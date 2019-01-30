@@ -49,4 +49,19 @@ Find sum of all intergers 1-100
 Vec<-(1:100)
 sum(Vec)
 ```
+##Problem 4
+Summing using For Loop
+```{r}
+Numbers<-c()
+Sum<-0
+for (i in 1:100){
+  if(i%%1==0){
+    Numbers<-c(Numbers,i)
+    Sum<-Sum+i
+    
+  }
+}
+
+ print(Sum) 
+```
 
