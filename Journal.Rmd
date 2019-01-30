@@ -51,7 +51,7 @@ Vec<-(1:100)
 sum(Vec)
 
 ```
-###Problem 5
+###Problem 4.2
 Summing using For Loop
 ```{r}
 Numbers<-c()
@@ -66,8 +66,8 @@ for (i in 1:100){
 
  print(Sum) 
 ```
-###Problem 6
-Make your own summing function
+###Problem 5
+Make your on summing function
 ```{r}
 Sumfun<-function(a){
   total<-0
@@ -80,6 +80,24 @@ return(total)
 TestRun<-(1:3)
 Sumfun(TestRun)
 
-
 ```
+###Problem 6
+List odd numbers from 1-100
+```{r}
+Oddnumbers<-c()
+for(j in Oddnumbers){
+  if(j%%2==1){
+    Oddnumbers<-c(Oddnumbers, j)
 
+  }
+}
+seq(Oddnumbers)
+```
+###Problem 7
+Prime numbers 1-1000
+
+###Problem 8
+100 random numbers
+
+###Problem 9
+100 random numbers within range
