@@ -131,5 +131,11 @@ Number of characters in a string
 Vec<-"AngelinaVasquez"
 strsplit(Vec,split="")
 ```
+### Problem 12
+Number of words in string
+```{r}
+Sentence<-"How is your day ?"
+strsplit(Sentence,split=" ")
+```
 
 
