@@ -117,6 +117,16 @@ Average<-function(x){
 Test<-(1:5)
 Average(Test)
 ```
+Mode
+```{r}
+Mode_A<-function(x){
+  table(x)
+  return(max(x))
+}
+Mtest<-c(1, 2 , 3 , 3 , 3 , 3 , 4 , 4 , 5 , 6 , 6 , 6)
+Mode_A(Mtest)
+```
+
 Range
 ```{r}
 Range_A<-function(x){
@@ -137,5 +147,6 @@ Number of words in string
 Sentence<-"How is your day ?"
 strsplit(Sentence,split=" ")
 ```
-
+### Problem 13
+Number of sentences in string
 
