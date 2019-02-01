@@ -98,6 +98,38 @@ Prime numbers 1-1000
 
 ###Problem 8
 100 random numbers
-
+```{r}
+runif(100)
+```
 ###Problem 9
 100 random numbers within range
+```{r}
+runif(100,min=1,max=20.5)
+```
+###Problem 10
+Creating functions for descriptive statistics
+
+Mean
+```{r}
+Average<-function(x){
+  return(sum(x)/length(x))
+}
+Test<-(1:5)
+Average(Test)
+```
+Range
+```{r}
+Range_A<-function(x){
+  return(max(x)-min(x))
+}
+Test3<-(1:10)
+Range_A(Test3)
+```
+### Problem 11
+Number of characters in a string
+```{r}
+Vec<-"AngelinaVasquez"
+strsplit(Vec,split="")
+```
+
+
