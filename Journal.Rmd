@@ -95,6 +95,12 @@ seq(Oddnumbers)
 ```
 ###Problem 7
 Prime numbers 1-1000
+```{r}
+Primenum<-c(1:1000)
+
+  
+  
+```
 
 ###Problem 8
 100 random numbers
@@ -121,7 +127,7 @@ Mode
 ```{r}
 Mode_A<-function(x){
   table(x)
-  return(max(x))
+
 }
 Mtest<-c(1, 2 , 3 , 3 , 3 , 3 , 4 , 4 , 5 , 6 , 6 , 6)
 Mode_A(Mtest)
@@ -149,4 +155,9 @@ strsplit(Sentence,split=" ")
 ```
 ### Problem 13
 Number of sentences in string
+```{r}
+Sent<-"Hello. It is nice today. The weather is sunny."
+strsplit(Sent,split=" ")
+split(Sent, ".")
+```
 
