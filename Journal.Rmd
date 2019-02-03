@@ -141,6 +141,18 @@ Range_A<-function(x){
 Test3<-(1:10)
 Range_A(Test3)
 ```
+Median
+```{r}
+Middle<-function(x){
+  seq(x)
+  return(median(x))
+  
+  
+}
+T<-(1:27)
+Middle(T)
+```
+
 ### Problem 11
 Number of characters in a string
 ```{r}
@@ -160,4 +172,41 @@ Sent<-"Hello. It is nice today. The weather is sunny."
 strsplit(Sent,split=" ")
 split(Sent, ".")
 ```
+###Problem 14
+Number of times letter occurs in string
+```{r}
+String<-" My name is Angelina"
+table(String)
+```
+###Problem 15
+Is a word in this sentence?
+```{r}
+A<-"Hi"
+B<-"Hi there"
+C<-"There is a cat"
+D<-"The cat is in the tree"
 
+A%in%B
+C%in%D
+```
+###Problem 16
+Current time in milliseconds
+```{r}
+print(as.numeric(Sys.time())*1000, digits=15)
+```
+
+
+###Problem 17
+
+###Problem 18
+
+###Problem 19
+
+###Problem 20
+20x20 Matrix
+```{r}
+Mat<-matrix(runif(10),ncol=20,nrow=20)
+print(Mat)
+```
+
+###Problem 21
