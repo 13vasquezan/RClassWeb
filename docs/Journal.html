@@ -702,13 +702,9 @@ strsplit(Sentence,split=&quot; &quot;)</code></pre>
 <h3>Problem 13</h3>
 <p>Number of sentences in string</p>
 <pre class="r"><code>Sent&lt;-&quot;Hello. It is nice today. The weather is sunny.&quot;
-strsplit(Sent,split=&quot; &quot;)</code></pre>
+strsplit(Sent,split=&quot;[.]&quot;)</code></pre>
 <pre><code>## [[1]]
-## [1] &quot;Hello.&quot;  &quot;It&quot;      &quot;is&quot;      &quot;nice&quot;    &quot;today.&quot;  &quot;The&quot;     &quot;weather&quot;
-## [8] &quot;is&quot;      &quot;sunny.&quot;</code></pre>
-<pre class="r"><code>split(Sent, &quot;.&quot;)</code></pre>
-<pre><code>## $.
-## [1] &quot;Hello. It is nice today. The weather is sunny.&quot;</code></pre>
+## [1] &quot;Hello&quot;                 &quot; It is nice today&quot;     &quot; The weather is sunny&quot;</code></pre>
 </div>
 <div id="problem-14" class="section level3">
 <h3>Problem 14</h3>

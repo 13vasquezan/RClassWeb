@@ -170,8 +170,8 @@ strsplit(Sentence,split=" ")
 Number of sentences in string
 ```{r}
 Sent<-"Hello. It is nice today. The weather is sunny."
-strsplit(Sent,split=" ")
-split(Sent, ".")
+strsplit(Sent,split="[.]")
+
 ```
 ###Problem 14
 Number of times letter occurs in string
