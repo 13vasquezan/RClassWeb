@@ -143,14 +143,15 @@ Range_A(Test3)
 ```
 Median
 ```{r}
+J<-0
+tempa<-0
 Middle<-function(x){
-  seq(x)
-  return(median(x))
-  
-  
-}
-T<-(1:27)
-Middle(T)
+  for(j in x)
+    if(j(1)>j(2))
+      j(2)==tempa
+      tempa
+    
+  }
 ```
 
 ### Problem 11
