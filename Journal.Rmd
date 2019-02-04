@@ -1,5 +1,5 @@
 ---
-title: "Journal"
+title: "R Basic Problems"
 output:
   html_document:
     toc: true
@@ -14,6 +14,7 @@ output:
 knitr::opts_chunk$set(message=FALSE,warning=FALSE, cache=TRUE)
 ```
 ## Easy Practice Problems for Week 1
+
 ### Problem 1
 Do simple math with numbers
 ```{r}
@@ -206,6 +207,7 @@ print(as.numeric(Sys.time())*1000, digits=15)
 ###Problem 20
 20x20 Matrix
 ```{r}
+
 Mat<-matrix(runif(10),ncol=20,nrow=20)
 print(Mat)
 ```
