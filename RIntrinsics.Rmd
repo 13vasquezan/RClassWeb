@@ -13,5 +13,11 @@ output:
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(message=FALSE,warning=FALSE, cache=TRUE)
 ```
-Assignment Number 2
+This is a page that lists functions and has a brief description of how they work.
+
+##Assignment Number 2
+
+###General functions
+1.
+Help(topic)
 
