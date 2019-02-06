@@ -168,21 +168,21 @@ strsplit(Vec,split="")
 Number of words in string
 ```{r}
 Sentence<-"How is your day ?"
-strsplit(Sentence,split=" ")
-length(names(Sentence))
+sapply(strsplit(Sentence," "), length)
+
 ```
 ### Problem 13
 Number of sentences in string
 ```{r}
-Sent<-"Hello. It is nice today. The weather is sunny."
-strsplit(Sent,split="[.]")
+Sent<-" Hello. It is nice today. The weather is sunny."
+table(unlist(strsplit(Sent,split="[.]")))
 
 ```
 ###Problem 14
 Number of times letter occurs in string
 ```{r}
-String<- " My name is Angelina"
-table(String)
+B<- " My name is Angelina"
+table(unlist(strsplit(B,split="")))
 
 ```
 ###Problem 15
