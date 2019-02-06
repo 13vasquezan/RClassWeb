@@ -148,15 +148,14 @@ Range_A(Test3)
 ```
 Median
 ```{r}
-J<-0
-tempa<-0
 Middle<-function(x){
-  for(j in x)
-    if(j(1)>j(2))
-      j(2)==tempa
-      tempa
-    
-  }
+sort(x, decreasing = FALSE)
+  B<-length(x)
+  return(median(x))
+}
+
+test<-c(19,1,7,2,18,4)
+Middle(test)
 ```
 
 ### Problem 11
@@ -170,6 +169,7 @@ Number of words in string
 ```{r}
 Sentence<-"How is your day ?"
 strsplit(Sentence,split=" ")
+length(names(Sentence))
 ```
 ### Problem 13
 Number of sentences in string
@@ -181,8 +181,9 @@ strsplit(Sent,split="[.]")
 ###Problem 14
 Number of times letter occurs in string
 ```{r}
-String<-" My name is Angelina"
+String<- " My name is Angelina"
 table(String)
+
 ```
 ###Problem 15
 Is a word in this sentence?

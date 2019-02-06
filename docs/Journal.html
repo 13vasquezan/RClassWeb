@@ -1681,15 +1681,15 @@ Test3&lt;-(1:10)
 Range_A(Test3)</code></pre>
 <pre><code>## [1] 9</code></pre>
 <p>Median</p>
-<pre class="r"><code>J&lt;-0
-tempa&lt;-0
-Middle&lt;-function(x){
-  for(j in x)
-    if(j(1)&gt;j(2))
-      j(2)==tempa
-      tempa
-    
-  }</code></pre>
+<pre class="r"><code>Middle&lt;-function(x){
+sort(x, decreasing = FALSE)
+  B&lt;-length(x)
+  return(median(x))
+}
+
+test&lt;-c(19,1,7,2,18,4)
+Middle(test)</code></pre>
+<pre><code>## [1] 5.5</code></pre>
 </div>
 <div id="problem-11" class="section level3">
 <h3>Problem 11</h3>
@@ -1706,6 +1706,8 @@ strsplit(Vec,split=&quot;&quot;)</code></pre>
 strsplit(Sentence,split=&quot; &quot;)</code></pre>
 <pre><code>## [[1]]
 ## [1] &quot;How&quot;  &quot;is&quot;   &quot;your&quot; &quot;day&quot;  &quot;?&quot;</code></pre>
+<pre class="r"><code>length(names(Sentence))</code></pre>
+<pre><code>## [1] 0</code></pre>
 </div>
 <div id="problem-13" class="section level3">
 <h3>Problem 13</h3>
@@ -1718,7 +1720,7 @@ strsplit(Sent,split=&quot;[.]&quot;)</code></pre>
 <div id="problem-14" class="section level3">
 <h3>Problem 14</h3>
 <p>Number of times letter occurs in string</p>
-<pre class="r"><code>String&lt;-&quot; My name is Angelina&quot;
+<pre class="r"><code>String&lt;- &quot; My name is Angelina&quot;
 table(String)</code></pre>
 <pre><code>## String
 ##  My name is Angelina 
