@@ -21,3 +21,19 @@ This is a page that lists functions and has a brief description of how they work
 1.
 Help(topic)
 
+2.
+?topic
+
+This function is used when you are looking for the help page documentation of a certain topic in R.
+For example you want to understand the summing function
+```{r}
+?sum
+```
+3.
+Is()
+
+This function is used to see if a certain obkect in R is part of a class you selected. This is a logical statement.If it is in the class or if it is not in the class then True or False will be returned
+
+
+
+

@@ -193,7 +193,7 @@ B<-"Hi there"
 C<-"There is a cat"
 D<-"The cat is in the tree"
 
-A%in%B
+is(A,B)
 C%in%D
 ```
 ###Problem 16
