@@ -32,7 +32,25 @@ For example you want to understand the summing function
 3.
 Is()
 
-This function is used to see if a certain obkect in R is part of a class you selected. This is a logical statement.If it is in the class or if it is not in the class then True or False will be returned
+This function is used to see if a certain object in R is part of a class you selected. This is a logical statement.If it is in the class or if it is not in the class then True or False will be returned
+```{r}
+is
+```
+4.
+dir()
+
+This function is used to create a vector of characters for a name of files or folders in a directory
+
+5.
+list.files()
+
+Similar to the dir function, this function creates a vector of the names of files or folders in a directory
+
+###Input and Output
+1.
+save()
+
+This function is used to create a temporary file to show that you saved your current word
 
 
 

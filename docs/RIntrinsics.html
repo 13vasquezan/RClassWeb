@@ -419,7 +419,63 @@ div.tocify {
 <ol start="3" style="list-style-type: decimal">
 <li>Is()</li>
 </ol>
-<p>This function is used to see if a certain obkect in R is part of a class you selected. This is a logical statement.If it is in the class or if it is not in the class then True or False will be returned</p>
+<p>This function is used to see if a certain object in R is part of a class you selected. This is a logical statement.If it is in the class or if it is not in the class then True or False will be returned</p>
+<pre class="r"><code>is</code></pre>
+<pre><code>## function (object, class2) 
+## {
+##     class1 &lt;- class(object)
+##     S3Case &lt;- length(class1) &gt; 1L
+##     if (S3Case) 
+##         class1 &lt;- class1[[1L]]
+##     if (missing(class2)) 
+##         return(extends(class1))
+##     class1Def &lt;- getClassDef(class1)
+##     if (is.null(class1Def)) 
+##         return(inherits(object, class2))
+##     if (is.character(class2)) 
+##         class2Def &lt;- getClassDef(class2, .classDefEnv(class1Def))
+##     else {
+##         class2Def &lt;- class2
+##         class2 &lt;- class2Def@className
+##     }
+##     S3Case &lt;- S3Case || (is.object(object) &amp;&amp; !isS4(object))
+##     S3Case &lt;- S3Case &amp;&amp; (is.null(class2Def) || class2 %in% .BasicClasses || 
+##         extends(class2Def, &quot;oldClass&quot;))
+##     if (S3Case) 
+##         inherits(object, class2)
+##     else if (.identC(class1, class2) || .identC(class2, &quot;ANY&quot;)) 
+##         TRUE
+##     else {
+##         if (!is.null(contained &lt;- class1Def@contains[[class2]])) 
+##             contained@simple || contained@test(object)
+##         else if (is.null(class2Def)) 
+##             FALSE
+##         else if (!.identC(class(class2Def), &quot;classRepresentation&quot;) &amp;&amp; 
+##             isClassUnion(class2Def)) 
+##             any(c(class1, names(class1Def@contains)) %in% names(class2Def@subclasses))
+##         else {
+##             ext &lt;- class2Def@subclasses[[class1]]
+##             !is.null(ext) &amp;&amp; (ext@simple || ext@test(object))
+##         }
+##     }
+## }
+## &lt;bytecode: 0x7fdf8d348408&gt;
+## &lt;environment: namespace:methods&gt;</code></pre>
+<ol start="4" style="list-style-type: decimal">
+<li>dir()</li>
+</ol>
+<p>This function is used to create a vector of characters for a name of files or folders in a directory</p>
+<ol start="5" style="list-style-type: decimal">
+<li>list.files()</li>
+</ol>
+<p>Similar to the dir function, this function creates a vector of the names of files or folders in a directory</p>
+</div>
+<div id="input-and-output" class="section level3">
+<h3>Input and Output</h3>
+<ol style="list-style-type: decimal">
+<li>save()</li>
+</ol>
+<p>This function is used to create a temporary file to show that you saved your current word</p>
 </div>
 </div>
 
