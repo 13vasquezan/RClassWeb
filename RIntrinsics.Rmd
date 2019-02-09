@@ -21,6 +21,7 @@ This is a page that lists functions and has a brief description of how they work
 1.
 Help(topic)
 
+This function shows you all the help systems for a problem
 2.
 ?topic
 
@@ -55,17 +56,48 @@ This function is used to create a temporary file to show that you saved your cur
 2.
 load()
 
-
+This is used to reload what you previously saved with the save func
 3.
 data()
-4.library()
-5. read.csv()
-6.read.table()
-7. scan()
-8.print()
-9.cat()
-10.write.table()
 
+This function loads the data sets you have
+
+4.
+library()
+
+This function loads, attaches, and lists packages
+
+
+5.
+read.csv()
+
+This function transposes a data table to a data frame.
+
+6.
+read.table()
+
+Similar to  the previous function this reads table data and creates a data frame 
+
+7. 
+scan()
+
+Reads data in a vector or list
+
+8.
+print()
+
+This function prints out the argument
+
+9.
+cat()
+
+This concatenates outputs of objects
+
+10. 
+write.table()
+
+
+This prints an arguement after its converted from a data frame
 
 
 
