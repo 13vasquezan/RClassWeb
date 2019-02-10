@@ -125,8 +125,136 @@ This concatenates outputs of objects
 10. 
 write.table()
 
-
 This prints an arguement after its converted from a data frame
 
+###Math
+1.
+max()
+
+This finds the highest number in a list
+```{r}
+ABC<-c(1,4,17,3)
+
+max(ABC)
+
+```
+
+2.
+min()
+
+This finds the smallest number in a list
+```{r}
+Y<-c(4,17,36,1)
+
+min(Y)
+```
+
+3.
+range()
+
+This diplays the lowest and highest number in a list
+```{r}
+X<-c(3,6,9,10,13,15)
+
+range(X)
+```
+
+4.
+sum()
+
+This adds all the the numbers you have selected
+
+```{r}
+J<-13
+K<-15
+
+sum(J,K)
+```
+
+5.
+mean()
+
+This adds all the numbers in a list and divdes it by the total number
+
+```{r}
+I<-c(1,2,3,4,5)
+
+mean(I)
+```
+
+6.
+median()
+
+This finds the middle most number in a list
+
+```{r}
+U<-c(7,3,8,1,10,4)
+
+median(U)
+```
+
+7.
+var()
+
+This computes the variance of a number set, i.e. how much numbers vary from mean
+
+```{r}
+l<-c(4,2,6,11,13)
+
+var(l)
+```
+
+8.
+sd()
+
+This computes the standard deviations the numbers have from there mean
+
+```{r}
+sd(l)
+```
+
+9.
+cor()
+
+This calculates the covariance or correlation between two matrices
+```{r}
+D<-c(2,5,7,9,12)
+
+cor(l,D)
+```
+
+10.
+round()
+
+This rounds a number up to o decimal places
+
+```{r}
+T<-12.6
+
+round(T)
+```
+
+11.
+abs()
+
+This computes the absoulte value of a numer
+```{r}
+Q<--13
+
+abs(Q)
+```
+
+###Distributions
+
+1.
+rnorm()
+
+2.
+runif()
+
+This generates random number
+```{r}
+runif(2:17)
+```
 
 
