@@ -193,8 +193,8 @@ B<-"Hi there"
 C<-"There is a cat"
 D<-"The cat is in the tree"
 
-is(A,B)
-C%in%D
+grepl(A, B)
+
 ```
 ###Problem 16
 Current time in milliseconds
