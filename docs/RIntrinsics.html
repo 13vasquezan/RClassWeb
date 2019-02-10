@@ -413,58 +413,27 @@ div.tocify {
 <ol style="list-style-type: decimal">
 <li>Help(topic)</li>
 </ol>
-<p>This function shows you all the help systems for a problem 2. ?topic</p>
+<p>This function shows you all the help systems for a problem</p>
+<pre class="r"><code>help(sum)</code></pre>
+<ol start="2" style="list-style-type: decimal">
+<li>?topic</li>
+</ol>
 <p>This function is used when you are looking for the help page documentation of a certain topic in R. For example you want to understand the summing function</p>
 <pre class="r"><code>?sum</code></pre>
 <ol start="3" style="list-style-type: decimal">
 <li>Is()</li>
 </ol>
 <p>This function is used to see if a certain object in R is part of a class you selected. This is a logical statement.If it is in the class or if it is not in the class then True or False will be returned</p>
-<pre class="r"><code>is</code></pre>
-<pre><code>## function (object, class2) 
-## {
-##     class1 &lt;- class(object)
-##     S3Case &lt;- length(class1) &gt; 1L
-##     if (S3Case) 
-##         class1 &lt;- class1[[1L]]
-##     if (missing(class2)) 
-##         return(extends(class1))
-##     class1Def &lt;- getClassDef(class1)
-##     if (is.null(class1Def)) 
-##         return(inherits(object, class2))
-##     if (is.character(class2)) 
-##         class2Def &lt;- getClassDef(class2, .classDefEnv(class1Def))
-##     else {
-##         class2Def &lt;- class2
-##         class2 &lt;- class2Def@className
-##     }
-##     S3Case &lt;- S3Case || (is.object(object) &amp;&amp; !isS4(object))
-##     S3Case &lt;- S3Case &amp;&amp; (is.null(class2Def) || class2 %in% .BasicClasses || 
-##         extends(class2Def, &quot;oldClass&quot;))
-##     if (S3Case) 
-##         inherits(object, class2)
-##     else if (.identC(class1, class2) || .identC(class2, &quot;ANY&quot;)) 
-##         TRUE
-##     else {
-##         if (!is.null(contained &lt;- class1Def@contains[[class2]])) 
-##             contained@simple || contained@test(object)
-##         else if (is.null(class2Def)) 
-##             FALSE
-##         else if (!.identC(class(class2Def), &quot;classRepresentation&quot;) &amp;&amp; 
-##             isClassUnion(class2Def)) 
-##             any(c(class1, names(class1Def@contains)) %in% names(class2Def@subclasses))
-##         else {
-##             ext &lt;- class2Def@subclasses[[class1]]
-##             !is.null(ext) &amp;&amp; (ext@simple || ext@test(object))
-##         }
-##     }
-## }
-## &lt;bytecode: 0x7fdf8d348408&gt;
-## &lt;environment: namespace:methods&gt;</code></pre>
+<pre class="r"><code>A&lt;-&quot;H&quot;
+is(A, &quot;character&quot;)</code></pre>
+<pre><code>## [1] TRUE</code></pre>
 <ol start="4" style="list-style-type: decimal">
 <li>dir()</li>
 </ol>
 <p>This function is used to create a vector of characters for a name of files or folders in a directory</p>
+<pre class="r"><code>A&lt;-&quot;hello&quot;
+dir(A)</code></pre>
+<pre><code>## character(0)</code></pre>
 <ol start="5" style="list-style-type: decimal">
 <li>list.files()</li>
 </ol>
@@ -476,11 +445,87 @@ div.tocify {
 <li>save()</li>
 </ol>
 <p>This function is used to create a temporary file to show that you saved your current work.</p>
+<pre class="r"><code>save</code></pre>
+<pre><code>## function (..., list = character(), file = stop(&quot;&#39;file&#39; must be specified&quot;), 
+##     ascii = FALSE, version = NULL, envir = parent.frame(), compress = isTRUE(!ascii), 
+##     compression_level, eval.promises = TRUE, precheck = TRUE) 
+## {
+##     opts &lt;- getOption(&quot;save.defaults&quot;)
+##     if (missing(compress) &amp;&amp; !is.null(opts$compress)) 
+##         compress &lt;- opts$compress
+##     if (missing(compression_level) &amp;&amp; !is.null(opts$compression_level)) 
+##         compression_level &lt;- opts$compression_level
+##     if (missing(ascii) &amp;&amp; !is.null(opts$ascii)) 
+##         ascii &lt;- opts$ascii
+##     if (missing(version)) 
+##         version &lt;- opts$version
+##     if (!is.null(version) &amp;&amp; version &lt; 2) 
+##         warning(&quot;Use of save versions prior to 2 is deprecated&quot;, 
+##             domain = NA)
+##     names &lt;- as.character(substitute(list(...)))[-1L]
+##     if (missing(list) &amp;&amp; !length(names)) 
+##         warning(&quot;nothing specified to be save()d&quot;)
+##     list &lt;- c(list, names)
+##     if (!is.null(version) &amp;&amp; version == 1) 
+##         .Internal(save(list, file, ascii, version, envir, eval.promises))
+##     else {
+##         if (precheck) {
+##             ok &lt;- vapply(list, exists, NA, envir = envir)
+##             if (!all(ok)) {
+##                 n &lt;- sum(!ok)
+##                 stop(sprintf(ngettext(n, &quot;object %s not found&quot;, 
+##                   &quot;objects %s not found&quot;), paste(sQuote(list[!ok]), 
+##                   collapse = &quot;, &quot;)), domain = NA)
+##             }
+##         }
+##         if (is.character(file)) {
+##             if (!nzchar(file)) 
+##                 stop(&quot;&#39;file&#39; must be non-empty string&quot;)
+##             if (!is.character(compress)) {
+##                 if (!is.logical(compress)) 
+##                   stop(&quot;&#39;compress&#39; must be logical or character&quot;)
+##                 compress &lt;- if (compress) 
+##                   &quot;gzip&quot;
+##                 else &quot;no compression&quot;
+##             }
+##             con &lt;- switch(compress, bzip2 = {
+##                 if (!missing(compression_level)) bzfile(file, 
+##                   &quot;wb&quot;, compression = compression_level) else bzfile(file, 
+##                   &quot;wb&quot;)
+##             }, xz = {
+##                 if (!missing(compression_level)) xzfile(file, 
+##                   &quot;wb&quot;, compression = compression_level) else xzfile(file, 
+##                   &quot;wb&quot;, compression = 9)
+##             }, gzip = {
+##                 if (!missing(compression_level)) gzfile(file, 
+##                   &quot;wb&quot;, compression = compression_level) else gzfile(file, 
+##                   &quot;wb&quot;)
+##             }, `no compression` = file(file, &quot;wb&quot;), stop(gettextf(&quot;&#39;compress = \&quot;%s\&quot;&#39; is invalid&quot;, 
+##                 compress)))
+##             on.exit(close(con))
+##         }
+##         else if (inherits(file, &quot;connection&quot;)) 
+##             con &lt;- file
+##         else stop(&quot;bad file argument&quot;)
+##         if (isOpen(con) &amp;&amp; !ascii &amp;&amp; summary(con)$text != &quot;binary&quot;) 
+##             stop(&quot;can only save to a binary connection&quot;)
+##         .Internal(saveToConn(list, con, ascii, version, envir, 
+##             eval.promises))
+##     }
+## }
+## &lt;bytecode: 0x7fca8c7b3c08&gt;
+## &lt;environment: namespace:base&gt;</code></pre>
 <ol start="2" style="list-style-type: decimal">
 <li>load()</li>
 </ol>
-<p>This is used to reload what you previously saved with the save func 3. data()</p>
+<p>This is used to reload what you previously saved with the save func</p>
+<ol start="3" style="list-style-type: decimal">
+<li>data()</li>
+</ol>
 <p>This function loads the data sets you have</p>
+<pre class="r"><code>A&lt;-c(1,2,3)
+B&lt;-c(5,6,7)
+data(A,B)</code></pre>
 <ol start="4" style="list-style-type: decimal">
 <li>library()</li>
 </ol>
@@ -501,6 +546,10 @@ div.tocify {
 <li>print()</li>
 </ol>
 <p>This function prints out the argument</p>
+<pre class="r"><code>A&lt;-1
+B&lt;-2
+print(sum(A,B))</code></pre>
+<pre><code>## [1] 3</code></pre>
 <ol start="9" style="list-style-type: decimal">
 <li>cat()</li>
 </ol>

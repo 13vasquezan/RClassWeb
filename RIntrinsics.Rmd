@@ -22,6 +22,11 @@ This is a page that lists functions and has a brief description of how they work
 Help(topic)
 
 This function shows you all the help systems for a problem
+```{r}
+help(sum)
+```
+
+
 2.
 ?topic
 
@@ -35,12 +40,17 @@ Is()
 
 This function is used to see if a certain object in R is part of a class you selected. This is a logical statement.If it is in the class or if it is not in the class then True or False will be returned
 ```{r}
-is
+A<-"H"
+is(A, "character")
 ```
 4.
 dir()
 
 This function is used to create a vector of characters for a name of files or folders in a directory
+```{r}
+A<-"hello"
+dir(A)
+```
 
 5.
 list.files()
@@ -52,15 +62,27 @@ Similar to the dir function, this function creates a vector of the names of file
 save()
 
 This function is used to create a temporary file to show that you saved your current work.
+```{r}
+save
+
+```
+
 
 2.
 load()
 
 This is used to reload what you previously saved with the save func
+
 3.
 data()
 
 This function loads the data sets you have
+```{r}
+A<-c(1,2,3)
+B<-c(5,6,7)
+data(A,B)
+```
+
 
 4.
 library()
@@ -87,6 +109,13 @@ Reads data in a vector or list
 print()
 
 This function prints out the argument
+```{r}
+A<-1
+B<-2
+print(sum(A,B))
+
+```
+
 
 9.
 cat()
