@@ -8,6 +8,8 @@ navbar:
       href: Journal.html
     - text: "R Intrinsics"
       href: RIntrinsics.html
+    - text: "Harder Problems"
+      href: HarderProblems.html
     - text: "Links"
       href: Links.html
 output_dir: "docs"
