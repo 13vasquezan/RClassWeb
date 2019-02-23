@@ -91,11 +91,19 @@ Oddnumbers<-c()
 ###Problem 7
 Prime numbers 1-1000
 ```{r}
-Prime_Numbers <-(1:500)*2
-print(Prime_Numbers)
-
-
-
+prime.numbers <- function(limit){
+  n <- 2:limit
+  i <- 1
+  while(i < length(n)){
+    p <- n[i]
+    not.prime <- n[which(n %% p==0)]
+    not.prime <- not.prime[! not.prime %in% p]
+    n <- n[! n %in% not.prime]
+    i <- i + 1
+  }
+  n
+}
+prime.numbers(1:1000)
   
 ```
 
@@ -209,10 +217,22 @@ print(as.numeric(Sys.time())*1000, digits=15)
 
 
 ###Problem 17
+How long does it take for a code to run
+```{r}
+print(as.numeric(Sys.time())*1000, digits=15)
+return(print(as.numeric(Sys.time())*1000, digits=15)-print(as.numeric(Sys.time())*1000, digits=15))
+```
+
 
 ###Problem 18
 
 ###Problem 19
+Put variable into a text file
+```{r}
+y<-13
+write.csv(y)
+```
+
 
 ###Problem 20
 20x20 Matrix
@@ -223,3 +243,9 @@ print(Mat)
 ```
 
 ###Problem 21
+Turn matrix into a txt file 
+```{r}
+Matr<-matrix(runif(10),ncol=5,nrow=5)
+write.csv(Matr)
+```
+
