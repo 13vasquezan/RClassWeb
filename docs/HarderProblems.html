@@ -408,7 +408,73 @@ div.tocify {
 </div>
 
 
-
+<div id="progress-on-some-harder-problems-in-r" class="section level2">
+<h2>Progress on Some Harder Problems in R</h2>
+<div id="fizz-buzz-problem" class="section level3">
+<h3>1. Fizz Buzz Problem</h3>
+<pre class="r"><code>for(i in 1:100)
+  if(i%%3==0){
+    print(&quot;Fizz&quot;)}</code></pre>
+<pre><code>## [1] &quot;Fizz&quot;
+## [1] &quot;Fizz&quot;
+## [1] &quot;Fizz&quot;
+## [1] &quot;Fizz&quot;
+## [1] &quot;Fizz&quot;
+## [1] &quot;Fizz&quot;
+## [1] &quot;Fizz&quot;
+## [1] &quot;Fizz&quot;
+## [1] &quot;Fizz&quot;
+## [1] &quot;Fizz&quot;
+## [1] &quot;Fizz&quot;
+## [1] &quot;Fizz&quot;
+## [1] &quot;Fizz&quot;
+## [1] &quot;Fizz&quot;
+## [1] &quot;Fizz&quot;
+## [1] &quot;Fizz&quot;
+## [1] &quot;Fizz&quot;
+## [1] &quot;Fizz&quot;
+## [1] &quot;Fizz&quot;
+## [1] &quot;Fizz&quot;
+## [1] &quot;Fizz&quot;
+## [1] &quot;Fizz&quot;
+## [1] &quot;Fizz&quot;
+## [1] &quot;Fizz&quot;
+## [1] &quot;Fizz&quot;
+## [1] &quot;Fizz&quot;
+## [1] &quot;Fizz&quot;
+## [1] &quot;Fizz&quot;
+## [1] &quot;Fizz&quot;
+## [1] &quot;Fizz&quot;
+## [1] &quot;Fizz&quot;
+## [1] &quot;Fizz&quot;
+## [1] &quot;Fizz&quot;</code></pre>
+<pre class="r"><code>  if(i%%5==0){
+  print( &quot;Buzz&quot; )}</code></pre>
+<pre><code>## [1] &quot;Buzz&quot;</code></pre>
+<pre class="r"><code>  if(i%%3==0 &amp;&amp; i%%5==0){
+  print( &quot;FizzBuzz&quot; )}</code></pre>
+</div>
+<div id="frequency-counts" class="section level3">
+<h3>2. Frequency Counts</h3>
+<pre class="r"><code>Sent&lt;-&quot; Here I am doing harder problems&quot;
+table(unlist(strsplit(Sent,split=&quot;&quot;)))</code></pre>
+<pre><code>## 
+##   a b d e g h H i I l m n o p r s 
+## 6 2 1 2 4 1 1 1 1 1 1 2 1 2 1 4 1</code></pre>
+</div>
+<div id="random-number-generator" class="section level3">
+<h3>3. Random number generator</h3>
+<pre class="r"><code>a&lt;-runif(100,0,100)
+hist(a)</code></pre>
+<p><img src="HarderProblems_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
+</div>
+<div id="create-a-multiplication-table" class="section level3">
+<h3>4. Create a multiplication table</h3>
+<pre class="r"><code>e&lt;-c(2,3,1,5,6,8)
+e*3</code></pre>
+<pre><code>## [1]  6  9  3 15 18 24</code></pre>
+</div>
+</div>
 
 
 

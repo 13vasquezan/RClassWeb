@@ -13,4 +13,34 @@ output:
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(message=FALSE,warning=FALSE, cache=TRUE)
 ```
+##Progress on Some Harder Problems in R
+
+###1. Fizz Buzz Problem
+```{r}
+for(i in 1:100)
+  if(i%%3==0){
+    print("Fizz")}
+  if(i%%5==0){
+  print( "Buzz" )}
+  if(i%%3==0 && i%%5==0){
+  print( "FizzBuzz" )}
+```
+
+###2. Frequency Counts
+```{r}
+Sent<-" Here I am doing harder problems"
+table(unlist(strsplit(Sent,split="")))
+```
+
+###3. Random number generator
+```{r}
+a<-runif(100,0,100)
+hist(a)
+```
+
+###4. Create a multiplication table
+```{r}
+e<-c(2,3,1,5,6,8)
+e*3
+```
 
