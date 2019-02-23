@@ -68,7 +68,7 @@ for (i in 1:100){
  print(Sum) 
 ```
 ###Problem 5
-Make your on summing function
+Make your own summing function
 ```{r}
 Sumfun<-function(a){
   total<-0
@@ -91,17 +91,11 @@ Oddnumbers<-c()
 ###Problem 7
 Prime numbers 1-1000
 ```{r}
-Primenum<-c()
-for(i in 1:1000)
-  if(i%%2==0){
-  print("Non Prime")
-    }else if(i%%2==1){
-  print("Prime")}
-
-return(Primenum)
+Prime_Numbers <-(1:500)*2
+print(Prime_Numbers)
 
 
-  
+
   
 ```
 
@@ -156,6 +150,17 @@ sort(x, decreasing = FALSE)
 
 test<-c(19,1,7,2,18,4)
 Middle(test)
+```
+Standard Deviation
+```{r}
+SD_A<-function(x){
+  s<-mean(x)
+  i<-length(x)
+  return(sd(x))
+}
+
+Stest<-c(2,3,5,7,1)
+SD_A(Stest)
 ```
 
 ### Problem 11
