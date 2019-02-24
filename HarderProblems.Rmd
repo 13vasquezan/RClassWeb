@@ -43,4 +43,23 @@ hist(a)
 e<-c(2,3,1,5,6,8)
 e*3
 ```
+###5 Alphabet
+```{r}
+Alpha <- c("A","B","C","D","E")
+NewA <- unique(Alpha)
+sampleA<- sample(NewA)
+encryption_key <- data.frame(NewA,sampleA)
+
+encrypt_numbers <-function(input_sequence,key){
+  encrypted_sequence<-c()
+  for(i in 1:length(input_sequence)){
+    original_number <- input_sequence[i]
+    new_number <- key[key$numbers==original_number,]$scrambled_numbers
+    encrypted_sequence[i] <- new_number
+  }
+  return(encrypted_sequence)
+}
+
+encrypt_numbers(Alpha,encryption_key)
+```
 

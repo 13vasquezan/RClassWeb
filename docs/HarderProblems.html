@@ -474,6 +474,26 @@ hist(a)</code></pre>
 e*3</code></pre>
 <pre><code>## [1]  6  9  3 15 18 24</code></pre>
 </div>
+<div id="alphabet" class="section level3">
+<h3>5 Alphabet</h3>
+<pre class="r"><code>Alpha &lt;- c(&quot;A&quot;,&quot;B&quot;,&quot;C&quot;,&quot;D&quot;,&quot;E&quot;)
+NewA &lt;- unique(Alpha)
+sampleA&lt;- sample(NewA)
+encryption_key &lt;- data.frame(NewA,sampleA)
+
+encrypt_numbers &lt;-function(input_sequence,key){
+  encrypted_sequence&lt;-c()
+  for(i in 1:length(input_sequence)){
+    original_number &lt;- input_sequence[i]
+    new_number &lt;- key[key$numbers==original_number,]$scrambled_numbers
+    encrypted_sequence[i] &lt;- new_number
+  }
+  return(encrypted_sequence)
+}
+
+encrypt_numbers(Alpha,encryption_key)</code></pre>
+<pre><code>## NULL</code></pre>
+</div>
 </div>
 
 
