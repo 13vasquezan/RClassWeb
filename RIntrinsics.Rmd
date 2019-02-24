@@ -427,15 +427,51 @@ colMeans()
 This finds the mean of a column in a matrix
 
 ###Advanced Data processing
+1.
 apply()
+
+This returns a vector/list of values that have a margin of array
+
+2.
 aggregate()
-Strings
+
+This splits data into subsets
+
+###Strings
+
+1.
 paste()
+
+This concatenates vector
+
+2.
 strsplit()
+
+This splits elements of a character vector
+```{r}
+Vec<-"AngelinaVasquez"
+strsplit(Vec,split="")
+```
+3.
 tolower()
+
+This translates characters to lower case
+
+4.
 toupper
-Plotting
+
+This translates characters to upper case
+
+###Plotting
+1.
 hist()
+
+This creates a histogram of given values
+```{r}
+w<-c(2,3,5,6,6,1)
+hist(w)
+```
+
 plot()
 
 ###Distributions

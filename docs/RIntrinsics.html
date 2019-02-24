@@ -780,7 +780,48 @@ abs(Q)</code></pre>
 </div>
 <div id="advanced-data-processing" class="section level3">
 <h3>Advanced Data processing</h3>
-<p>apply() aggregate() Strings paste() strsplit() tolower() toupper Plotting hist() plot()</p>
+<ol style="list-style-type: decimal">
+<li>apply()</li>
+</ol>
+<p>This returns a vector/list of values that have a margin of array</p>
+<ol start="2" style="list-style-type: decimal">
+<li>aggregate()</li>
+</ol>
+<p>This splits data into subsets</p>
+</div>
+<div id="strings" class="section level3">
+<h3>Strings</h3>
+<ol style="list-style-type: decimal">
+<li>paste()</li>
+</ol>
+<p>This concatenates vector</p>
+<ol start="2" style="list-style-type: decimal">
+<li>strsplit()</li>
+</ol>
+<p>This splits elements of a character vector</p>
+<pre class="r"><code>Vec&lt;-&quot;AngelinaVasquez&quot;
+strsplit(Vec,split=&quot;&quot;)</code></pre>
+<pre><code>## [[1]]
+##  [1] &quot;A&quot; &quot;n&quot; &quot;g&quot; &quot;e&quot; &quot;l&quot; &quot;i&quot; &quot;n&quot; &quot;a&quot; &quot;V&quot; &quot;a&quot; &quot;s&quot; &quot;q&quot; &quot;u&quot; &quot;e&quot; &quot;z&quot;</code></pre>
+<ol start="3" style="list-style-type: decimal">
+<li>tolower()</li>
+</ol>
+<p>This translates characters to lower case</p>
+<ol start="4" style="list-style-type: decimal">
+<li>toupper</li>
+</ol>
+<p>This translates characters to upper case</p>
+</div>
+<div id="plotting" class="section level3">
+<h3>Plotting</h3>
+<ol style="list-style-type: decimal">
+<li>hist()</li>
+</ol>
+<p>This creates a histogram of given values</p>
+<pre class="r"><code>w&lt;-c(2,3,5,6,6,1)
+hist(w)</code></pre>
+<p><img src="RIntrinsics_files/figure-html/unnamed-chunk-26-1.png" width="672" /></p>
+<p>plot()</p>
 </div>
 <div id="distributions" class="section level3">
 <h3>Distributions</h3>
@@ -790,9 +831,9 @@ abs(Q)</code></pre>
 </ol>
 <p>This generates random number</p>
 <pre class="r"><code>runif(2:17)</code></pre>
-<pre><code>##  [1] 0.37416161 0.76114890 0.50575812 0.87888792 0.82197234 0.94171922
-##  [7] 0.12004955 0.99149119 0.03617338 0.23315902 0.51052827 0.98940694
-## [13] 0.29798281 0.70301136 0.95051327 0.75164781</code></pre>
+<pre><code>##  [1] 0.84902511 0.54697228 0.01060548 0.11506150 0.88874911 0.98545751
+##  [7] 0.13131646 0.57836531 0.92764182 0.26952102 0.41830999 0.47222877
+## [13] 0.87068457 0.73590007 0.33056511 0.17628366</code></pre>
 </div>
 <div id="programming" class="section level3">
 <h3>Programming</h3>
