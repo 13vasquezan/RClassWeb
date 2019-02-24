@@ -662,10 +662,24 @@ which.min(w)</code></pre>
 <li>table()</li>
 </ol>
 <p>This builds a tables from cross classifying factors</p>
+<pre class="r"><code>q&lt;-c(2,2,3,1,4,5,5,5,6)
+table(q)</code></pre>
+<pre><code>## q
+## 1 2 3 4 5 6 
+## 1 2 1 1 3 1</code></pre>
 <ol start="7" style="list-style-type: decimal">
 <li>sample()</li>
 </ol>
-<p>This creates a sample of data with or without replacement ###Math 1. max()</p>
+<p>This creates a sample of data with or without replacement</p>
+<pre class="r"><code>s&lt;-c(3,5,7,9,10)
+sample(s,3)</code></pre>
+<pre><code>## [1] 3 7 9</code></pre>
+</div>
+<div id="math" class="section level3">
+<h3>Math</h3>
+<ol style="list-style-type: decimal">
+<li>max()</li>
+</ol>
 <p>This finds the highest number in a list</p>
 <pre class="r"><code>ABC&lt;-c(1,4,17,3)
 
@@ -807,10 +821,16 @@ strsplit(Vec,split=&quot;&quot;)</code></pre>
 <li>tolower()</li>
 </ol>
 <p>This translates characters to lower case</p>
+<pre class="r"><code>e&lt;-&quot;T&quot;
+tolower(e)</code></pre>
+<pre><code>## [1] &quot;t&quot;</code></pre>
 <ol start="4" style="list-style-type: decimal">
 <li>toupper</li>
 </ol>
 <p>This translates characters to upper case</p>
+<pre class="r"><code>u&lt;-&quot;w&quot;
+toupper(u)</code></pre>
+<pre><code>## [1] &quot;W&quot;</code></pre>
 </div>
 <div id="plotting" class="section level3">
 <h3>Plotting</h3>
@@ -818,22 +838,28 @@ strsplit(Vec,split=&quot;&quot;)</code></pre>
 <li>hist()</li>
 </ol>
 <p>This creates a histogram of given values</p>
-<pre class="r"><code>w&lt;-c(2,3,5,6,6,1)
+<pre class="r"><code>w&lt;-c(1,2,4,3,3,3,5,6,6,1)
 hist(w)</code></pre>
-<p><img src="RIntrinsics_files/figure-html/unnamed-chunk-26-1.png" width="672" /></p>
-<p>plot()</p>
+<p><img src="RIntrinsics_files/figure-html/unnamed-chunk-31-1.png" width="672" /> 2. plot()</p>
+<p>This plots r objects</p>
 </div>
 <div id="distributions" class="section level3">
 <h3>Distributions</h3>
 <ol style="list-style-type: decimal">
-<li><p>rnorm()</p></li>
-<li><p>runif()</p></li>
+<li>rnorm()</li>
+</ol>
+<p>This runs a normal distribution</p>
+<pre class="r"><code>y&lt;-c(2,2,5,7,8,9)
+rnorm(y)</code></pre>
+<pre><code>## [1]  0.9028436  1.1124628 -0.7272896 -1.7398876 -0.2623224 -1.2898574</code></pre>
+<ol start="2" style="list-style-type: decimal">
+<li>runif()</li>
 </ol>
 <p>This generates random number</p>
 <pre class="r"><code>runif(2:17)</code></pre>
-<pre><code>##  [1] 0.84902511 0.54697228 0.01060548 0.11506150 0.88874911 0.98545751
-##  [7] 0.13131646 0.57836531 0.92764182 0.26952102 0.41830999 0.47222877
-## [13] 0.87068457 0.73590007 0.33056511 0.17628366</code></pre>
+<pre><code>##  [1] 0.90497571 0.11674190 0.50972755 0.25395937 0.48757738 0.02930033
+##  [7] 0.76158445 0.93433251 0.02416874 0.30037111 0.16753817 0.61719730
+## [13] 0.97196186 0.78938566 0.04932932 0.85259644</code></pre>
 </div>
 <div id="programming" class="section level3">
 <h3>Programming</h3>

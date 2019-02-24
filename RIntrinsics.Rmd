@@ -273,11 +273,20 @@ This returns a vector like the vector created but its a duplicate
 table()
 
 This builds a tables from cross classifying factors
+```{r}
+q<-c(2,2,3,1,4,5,5,5,6)
+table(q)
+```
 
 7.
 sample()
 
 This creates a sample of data with or without replacement
+```{r}
+s<-c(3,5,7,9,10)
+sample(s,3)
+```
+
 ###Math
 1.
 max()
@@ -436,6 +445,10 @@ This returns a vector/list of values that have a margin of array
 aggregate()
 
 This splits data into subsets
+```{r}
+
+```
+
 
 ###Strings
 
@@ -456,11 +469,19 @@ strsplit(Vec,split="")
 tolower()
 
 This translates characters to lower case
-
+```{r}
+e<-"T"
+tolower(e)
+```
 4.
 toupper
 
 This translates characters to upper case
+```{r}
+u<-"w"
+toupper(u)
+```
+
 
 ###Plotting
 1.
@@ -468,16 +489,24 @@ hist()
 
 This creates a histogram of given values
 ```{r}
-w<-c(2,3,5,6,6,1)
+w<-c(1,2,4,3,3,3,5,6,6,1)
 hist(w)
 ```
-
+2.
 plot()
+
+This plots r objects
 
 ###Distributions
 
 1.
 rnorm()
+
+This runs a normal distribution
+```{r}
+y<-c(2,2,5,7,8,9)
+rnorm(y)
+```
 
 2.
 runif()
