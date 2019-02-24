@@ -448,76 +448,6 @@ dir(A)</code></pre>
 <li>save()</li>
 </ol>
 <p>This function is used to create a temporary file to show that you saved your current work.</p>
-<pre class="r"><code>save</code></pre>
-<pre><code>## function (..., list = character(), file = stop(&quot;&#39;file&#39; must be specified&quot;), 
-##     ascii = FALSE, version = NULL, envir = parent.frame(), compress = isTRUE(!ascii), 
-##     compression_level, eval.promises = TRUE, precheck = TRUE) 
-## {
-##     opts &lt;- getOption(&quot;save.defaults&quot;)
-##     if (missing(compress) &amp;&amp; !is.null(opts$compress)) 
-##         compress &lt;- opts$compress
-##     if (missing(compression_level) &amp;&amp; !is.null(opts$compression_level)) 
-##         compression_level &lt;- opts$compression_level
-##     if (missing(ascii) &amp;&amp; !is.null(opts$ascii)) 
-##         ascii &lt;- opts$ascii
-##     if (missing(version)) 
-##         version &lt;- opts$version
-##     if (!is.null(version) &amp;&amp; version &lt; 2) 
-##         warning(&quot;Use of save versions prior to 2 is deprecated&quot;, 
-##             domain = NA)
-##     names &lt;- as.character(substitute(list(...)))[-1L]
-##     if (missing(list) &amp;&amp; !length(names)) 
-##         warning(&quot;nothing specified to be save()d&quot;)
-##     list &lt;- c(list, names)
-##     if (!is.null(version) &amp;&amp; version == 1) 
-##         .Internal(save(list, file, ascii, version, envir, eval.promises))
-##     else {
-##         if (precheck) {
-##             ok &lt;- vapply(list, exists, NA, envir = envir)
-##             if (!all(ok)) {
-##                 n &lt;- sum(!ok)
-##                 stop(sprintf(ngettext(n, &quot;object %s not found&quot;, 
-##                   &quot;objects %s not found&quot;), paste(sQuote(list[!ok]), 
-##                   collapse = &quot;, &quot;)), domain = NA)
-##             }
-##         }
-##         if (is.character(file)) {
-##             if (!nzchar(file)) 
-##                 stop(&quot;&#39;file&#39; must be non-empty string&quot;)
-##             if (!is.character(compress)) {
-##                 if (!is.logical(compress)) 
-##                   stop(&quot;&#39;compress&#39; must be logical or character&quot;)
-##                 compress &lt;- if (compress) 
-##                   &quot;gzip&quot;
-##                 else &quot;no compression&quot;
-##             }
-##             con &lt;- switch(compress, bzip2 = {
-##                 if (!missing(compression_level)) bzfile(file, 
-##                   &quot;wb&quot;, compression = compression_level) else bzfile(file, 
-##                   &quot;wb&quot;)
-##             }, xz = {
-##                 if (!missing(compression_level)) xzfile(file, 
-##                   &quot;wb&quot;, compression = compression_level) else xzfile(file, 
-##                   &quot;wb&quot;, compression = 9)
-##             }, gzip = {
-##                 if (!missing(compression_level)) gzfile(file, 
-##                   &quot;wb&quot;, compression = compression_level) else gzfile(file, 
-##                   &quot;wb&quot;)
-##             }, `no compression` = file(file, &quot;wb&quot;), stop(gettextf(&quot;&#39;compress = \&quot;%s\&quot;&#39; is invalid&quot;, 
-##                 compress)))
-##             on.exit(close(con))
-##         }
-##         else if (inherits(file, &quot;connection&quot;)) 
-##             con &lt;- file
-##         else stop(&quot;bad file argument&quot;)
-##         if (isOpen(con) &amp;&amp; !ascii &amp;&amp; summary(con)$text != &quot;binary&quot;) 
-##             stop(&quot;can only save to a binary connection&quot;)
-##         .Internal(saveToConn(list, con, ascii, version, envir, 
-##             eval.promises))
-##     }
-## }
-## &lt;bytecode: 0x7fca8c7b3c08&gt;
-## &lt;environment: namespace:base&gt;</code></pre>
 <ol start="2" style="list-style-type: decimal">
 <li>load()</li>
 </ol>
@@ -596,6 +526,13 @@ rep(U[2])</code></pre>
 <li>data.frame()</li>
 </ol>
 <p>This creates data in a frame that closely resembles matrices or lists</p>
+<pre class="r"><code>fr&lt;-c(1,2,3)
+dr&lt;-c(6,7,8)
+data.frame(fr,dr)</code></pre>
+<pre><code>##   fr dr
+## 1  1  6
+## 2  2  7
+## 3  3  8</code></pre>
 <ol start="6" style="list-style-type: decimal">
 <li>list()</li>
 </ol>
@@ -604,6 +541,13 @@ rep(U[2])</code></pre>
 <li>matrix()</li>
 </ol>
 <p>This creates a matrix from the data given</p>
+<pre class="r"><code>M &lt;- matrix(c(3:14), nrow = 4, byrow = TRUE)
+print(M)</code></pre>
+<pre><code>##      [,1] [,2] [,3]
+## [1,]    3    4    5
+## [2,]    6    7    8
+## [3,]    9   10   11
+## [4,]   12   13   14</code></pre>
 <ol start="8" style="list-style-type: decimal">
 <li>factor()</li>
 </ol>
@@ -612,6 +556,18 @@ rep(U[2])</code></pre>
 <li>rbind()</li>
 </ol>
 <p>This combines data rows</p>
+<pre class="r"><code>o &lt;- c(7, 4, 4, 9)                  
+p &lt;- c(5, 2, 8, 9)                 
+k &lt;- c(1, 2, 3, 4)                  
+data_1 &lt;- data.frame(o, p, k)
+vec_1 &lt;- c(9, 8, 7) 
+rbind(data_1, vec_1)</code></pre>
+<pre><code>##   o p k
+## 1 7 5 1
+## 2 4 2 2
+## 3 4 8 3
+## 4 9 9 4
+## 5 9 8 7</code></pre>
 <ol start="10" style="list-style-type: decimal">
 <li>cbind()</li>
 </ol>
@@ -631,7 +587,32 @@ rep(U[2])</code></pre>
 </div>
 <div id="indexing-data-frames-matrix-indexing-plus-the-following" class="section level3">
 <h3>Indexing data frames (matrix indexing plus the following)</h3>
-<p>x[[“name”]] column named “name” x$nameid. ###Variable conversion as.data.frame(x) as.numeric(x) as.logical(x) as.character(x) ###Variable information is.na(x) is.null(x) is.data.frame(x) is.numeric(x) is.character(x) length(x) dim(x) dimnames(x) nrow(x) ncol(x) class() attributes() ###Data selection and manipulation</p>
+<p>x[[“name”]] column named “name” x$nameid. ###Variable conversion 1. as.data.frame(x)</p>
+<p>Checks is objects are a data frame</p>
+<pre class="r"><code>f &lt;- as.data.frame(matrix(1:10,2,4,9),1:5)
+print(f)</code></pre>
+<pre><code>##   V1 V2 V3 V4
+## 1  1  2  3  4
+## 2  5  6  7  8</code></pre>
+<ol start="2" style="list-style-type: decimal">
+<li>as.numeric(x)</li>
+</ol>
+<p>checks is objects interpretable as numbers</p>
+<pre class="r"><code>xt &lt;- as.numeric(matrix(1:10,2,4,9),1:5)
+print(xt)</code></pre>
+<pre><code>## [1] 1 5 2 6 3 7 4 8</code></pre>
+<ol start="3" style="list-style-type: decimal">
+<li>as.logical(x)</li>
+</ol>
+<p>creates test of the logic in objects</p>
+<ol start="4" style="list-style-type: decimal">
+<li>as.character(x)</li>
+</ol>
+<p>creates test if object is a character</p>
+</div>
+<div id="variable-information" class="section level3">
+<h3>Variable information</h3>
+<p>is.na(x) is.null(x) is.data.frame(x) is.numeric(x) is.character(x) length(x) dim(x) dimnames(x) nrow(x) ncol(x) class() attributes() ###Data selection and manipulation</p>
 <ol style="list-style-type: decimal">
 <li>which.max()</li>
 </ol>
@@ -673,7 +654,7 @@ table(q)</code></pre>
 <p>This creates a sample of data with or without replacement</p>
 <pre class="r"><code>s&lt;-c(3,5,7,9,10)
 sample(s,3)</code></pre>
-<pre><code>## [1] 3 7 9</code></pre>
+<pre><code>## [1] 5 9 3</code></pre>
 </div>
 <div id="math" class="section level3">
 <h3>Math</h3>
@@ -840,7 +821,7 @@ toupper(u)</code></pre>
 <p>This creates a histogram of given values</p>
 <pre class="r"><code>w&lt;-c(1,2,4,3,3,3,5,6,6,1)
 hist(w)</code></pre>
-<p><img src="RIntrinsics_files/figure-html/unnamed-chunk-31-1.png" width="672" /> 2. plot()</p>
+<p><img src="RIntrinsics_files/figure-html/unnamed-chunk-36-1.png" width="672" /> 2. plot()</p>
 <p>This plots r objects</p>
 </div>
 <div id="distributions" class="section level3">
@@ -851,15 +832,15 @@ hist(w)</code></pre>
 <p>This runs a normal distribution</p>
 <pre class="r"><code>y&lt;-c(2,2,5,7,8,9)
 rnorm(y)</code></pre>
-<pre><code>## [1]  0.9028436  1.1124628 -0.7272896 -1.7398876 -0.2623224 -1.2898574</code></pre>
+<pre><code>## [1] -0.14024296 -0.29454916 -1.73678836 -0.47023376  2.17486127  0.01112428</code></pre>
 <ol start="2" style="list-style-type: decimal">
 <li>runif()</li>
 </ol>
 <p>This generates random number</p>
 <pre class="r"><code>runif(2:17)</code></pre>
-<pre><code>##  [1] 0.90497571 0.11674190 0.50972755 0.25395937 0.48757738 0.02930033
-##  [7] 0.76158445 0.93433251 0.02416874 0.30037111 0.16753817 0.61719730
-## [13] 0.97196186 0.78938566 0.04932932 0.85259644</code></pre>
+<pre><code>##  [1] 0.97166042 0.52918796 0.57536162 0.40698761 0.07318852 0.71004700
+##  [7] 0.55241536 0.70868924 0.72461142 0.90808399 0.36466129 0.62001555
+## [13] 0.09779173 0.59332411 0.25804075 0.76189688</code></pre>
 </div>
 <div id="programming" class="section level3">
 <h3>Programming</h3>

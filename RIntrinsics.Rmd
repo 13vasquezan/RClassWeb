@@ -63,7 +63,7 @@ save()
 
 This function is used to create a temporary file to show that you saved your current work.
 ```{r}
-save
+
 
 ```
 
@@ -164,6 +164,12 @@ rep(U[2])
 data.frame()
 
 This creates  data in a frame that closely resembles matrices or lists
+```{r}
+fr<-c(1,2,3)
+dr<-c(6,7,8)
+data.frame(fr,dr)
+```
+
 
 6.
 list()
@@ -174,6 +180,12 @@ This constructs and checks for differnt types of lists in R
 matrix()
 
 This creates a matrix from the data given
+```{r}
+M <- matrix(c(3:14), nrow = 4, byrow = TRUE)
+print(M)
+
+```
+
 
 8.
 factor()
@@ -184,6 +196,16 @@ This labels a vector as a factor
 rbind()
 
 This combines data rows
+```{r}
+o <- c(7, 4, 4, 9)                  
+p <- c(5, 2, 8, 9)                 
+k <- c(1, 2, 3, 4)                  
+data_1 <- data.frame(o, p, k)
+vec_1 <- c(9, 8, 7) 
+rbind(data_1, vec_1)
+
+```
+
 
 10.
 cbind()
@@ -219,10 +241,34 @@ x[“name”,] row named “name”
 x[[“name”]] column named “name”
 x$nameid.
 ###Variable conversion
+1.
 as.data.frame(x)
+
+Checks is objects are a data frame
+```{r}
+f <- as.data.frame(matrix(1:10,2,4,9),1:5)
+print(f)
+
+```
+2.
 as.numeric(x)
+
+checks is objects interpretable as numbers
+```{r}
+xt <- as.numeric(matrix(1:10,2,4,9),1:5)
+print(xt)
+
+```
+3.
 as.logical(x)
+
+creates test of the logic in objects
+
+4.
 as.character(x)
+
+creates test if object is a character
+
 ###Variable information
 is.na(x)
 is.null(x)
