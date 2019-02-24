@@ -448,11 +448,12 @@ div.tocify {
 ## [1] &quot;Fizz&quot;
 ## [1] &quot;Fizz&quot;
 ## [1] &quot;Fizz&quot;</code></pre>
-<pre class="r"><code>  if(i%%5==0){
-  print( &quot;Buzz&quot; )}</code></pre>
+<pre class="r"><code> if(i%%5==0){
+  print( &quot;Buzz&quot; )
+ }else(i%%3==0 &amp;&amp; i%%5==0)</code></pre>
 <pre><code>## [1] &quot;Buzz&quot;</code></pre>
-<pre class="r"><code>  if(i%%3==0 &amp;&amp; i%%5==0){
-  print( &quot;FizzBuzz&quot; )}</code></pre>
+<pre class="r"><code>  print( &quot;FizzBuzz&quot; )</code></pre>
+<pre><code>## [1] &quot;FizzBuzz&quot;</code></pre>
 </div>
 <div id="frequency-counts" class="section level3">
 <h3>2. Frequency Counts</h3>
@@ -475,7 +476,7 @@ e*3</code></pre>
 <pre><code>## [1]  6  9  3 15 18 24</code></pre>
 </div>
 <div id="alphabet" class="section level3">
-<h3>5 Alphabet</h3>
+<h3>5. Alphabet</h3>
 <pre class="r"><code>Alpha &lt;- c(&quot;A&quot;,&quot;B&quot;,&quot;C&quot;,&quot;D&quot;,&quot;E&quot;)
 NewA &lt;- unique(Alpha)
 sampleA&lt;- sample(NewA)
@@ -493,6 +494,56 @@ encrypt_numbers &lt;-function(input_sequence,key){
 
 encrypt_numbers(Alpha,encryption_key)</code></pre>
 <pre><code>## NULL</code></pre>
+</div>
+<div id="snakes-and-ladders" class="section level3">
+<h3>6. Snakes and Ladders</h3>
+</div>
+<div id="roll-dice" class="section level3">
+<h3>7. Roll Dice</h3>
+<pre class="r"><code>total_sum&lt;-0
+number_of_rolls&lt;-0
+while(total_sum &lt; 12){
+  number_of_rolls &lt;- number_of_rolls+1
+  total_sum &lt;-total_sum+sample(c(1,2,3,4,5,6),1)
+}
+number_of_rolls</code></pre>
+<pre><code>## [1] 4</code></pre>
+<pre class="r"><code>total_sum&lt;-0
+number_of_rolls&lt;-0
+while(total_sum &lt; 11){
+  number_of_rolls &lt;- number_of_rolls+1
+  total_sum &lt;-total_sum+sample(c(1,2,3,4,5,6),1)
+}
+number_of_rolls</code></pre>
+<pre><code>## [1] 3</code></pre>
+<pre class="r"><code>total_sum&lt;-0
+number_of_rolls&lt;-0
+while(total_sum &lt; 2){
+  number_of_rolls &lt;- number_of_rolls+1
+  total_sum &lt;-total_sum+sample(c(1,2,3,4,5,6),1)
+}
+number_of_rolls</code></pre>
+<pre><code>## [1] 1</code></pre>
+<pre class="r"><code>total_sum&lt;-0
+number_of_rolls&lt;-0
+while(total_sum &lt; 3){
+  number_of_rolls &lt;- number_of_rolls+1
+  total_sum &lt;-total_sum+sample(c(1,2,3,4,5,6),1)
+}
+number_of_rolls</code></pre>
+<pre><code>## [1] 2</code></pre>
+</div>
+<div id="monte-hall" class="section level3">
+<h3>8. Monte Hall</h3>
+</div>
+<div id="doors" class="section level3">
+<h3>9.100 Doors</h3>
+</div>
+<div id="bottles" class="section level3">
+<h3>10.99 Bottles</h3>
+</div>
+<div id="tic-tac-toe" class="section level3">
+<h3>11. Tic-Tac-Toe</h3>
 </div>
 </div>
 

@@ -20,10 +20,10 @@ knitr::opts_chunk$set(message=FALSE,warning=FALSE, cache=TRUE)
 for(i in 1:100)
   if(i%%3==0){
     print("Fizz")}
-  if(i%%5==0){
-  print( "Buzz" )}
-  if(i%%3==0 && i%%5==0){
-  print( "FizzBuzz" )}
+ if(i%%5==0){
+  print( "Buzz" )
+ }else(i%%3==0 && i%%5==0)
+  print( "FizzBuzz" )
 ```
 
 ###2. Frequency Counts
@@ -43,7 +43,7 @@ hist(a)
 e<-c(2,3,1,5,6,8)
 e*3
 ```
-###5 Alphabet
+###5. Alphabet
 ```{r}
 Alpha <- c("A","B","C","D","E")
 NewA <- unique(Alpha)
@@ -62,4 +62,49 @@ encrypt_numbers <-function(input_sequence,key){
 
 encrypt_numbers(Alpha,encryption_key)
 ```
+###6. Snakes and Ladders
 
+###7. Roll Dice
+```{r}
+total_sum<-0
+number_of_rolls<-0
+while(total_sum < 12){
+  number_of_rolls <- number_of_rolls+1
+  total_sum <-total_sum+sample(c(1,2,3,4,5,6),1)
+}
+number_of_rolls
+```
+```{r}
+total_sum<-0
+number_of_rolls<-0
+while(total_sum < 11){
+  number_of_rolls <- number_of_rolls+1
+  total_sum <-total_sum+sample(c(1,2,3,4,5,6),1)
+}
+number_of_rolls
+```
+```{r}
+total_sum<-0
+number_of_rolls<-0
+while(total_sum < 2){
+  number_of_rolls <- number_of_rolls+1
+  total_sum <-total_sum+sample(c(1,2,3,4,5,6),1)
+}
+number_of_rolls
+```
+```{r}
+total_sum<-0
+number_of_rolls<-0
+while(total_sum < 3){
+  number_of_rolls <- number_of_rolls+1
+  total_sum <-total_sum+sample(c(1,2,3,4,5,6),1)
+}
+number_of_rolls
+```
+###8. Monte Hall
+
+###9.100 Doors
+
+###10.99 Bottles
+
+###11. Tic-Tac-Toe
