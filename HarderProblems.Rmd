@@ -63,6 +63,19 @@ encrypt_numbers <-function(input_sequence,key){
 encrypt_numbers(Alpha,encryption_key)
 ```
 ###6. Snakes and Ladders
+```{r}
+save_rolls <- c()
+for(sims in 1:1000){
+  total_sum<-0
+  number_of_rolls<-0
+  while(total_sum < 25){
+    number_of_rolls <- number_of_rolls+1
+    total_sum <-total_sum+sample(c(1,2,3,4,5,6),1)
+  }
+  save_rolls[sims] <- number_of_rolls
+}
+mean(save_rolls)
+```
 
 ###7. Roll Dice
 ```{r}
