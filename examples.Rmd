@@ -34,3 +34,45 @@ ggplot(plot_df, aes(x=AvNonRisk,y=AvSocialRisk))+
 
        
 ```
+###2.Bar Graphs
+```{r}
+factor_one <- as.factor(c("A","B","C"))
+dv_means <- c(20,30,40)
+dv_SEs   <- c(4,3.4,4)
+plot_df <- data.frame(factor_one,
+                      dv_means,
+                      dv_SEs)
+
+ggplot(plot_df, aes(x=factor_one,y=dv_means))+
+  geom_bar(stat="identity")
+```
+
+###Line Graph
+```{r}
+#Create a dataframe
+factor_one <- as.factor(c("A","B","C"))
+dv_means <- c(20,30,40)
+dv_SEs   <- c(4,3.4,4)
+plot_df <- data.frame(factor_one,
+                      dv_means,
+                      dv_SEs)
+
+# basic line graph
+
+ggplot(plot_df, aes(x=factor_one,y=dv_means, group=1))+
+  geom_point()+
+  geom_line()
+```
+
+
+###Make a Histogram
+```{r}
+score <- rnorm(100,0,1)
+n <- 1:100
+plot_df <- data.frame(score,n)
+
+ggplot(plot_df, aes(x=score))+
+  geom_histogram(bins=10,
+                 color="white")
+```
+

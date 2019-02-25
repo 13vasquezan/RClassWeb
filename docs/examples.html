@@ -427,7 +427,45 @@ ggplot(plot_df, aes(x=AvNonRisk,y=AvSocialRisk))+
   ggtitle(&quot;Scatterplot with Regression&quot;)+
   theme_classic(base_size=12)+
   theme(plot.title = element_text(hjust = 0.5))</code></pre>
-<p><img src="examples_files/figure-html/unnamed-chunk-1-1.png" width="672" /></p>
+<p><img src="examples_files/figure-html/unnamed-chunk-1-1.png" width="672" /> ###2.Bar Graphs</p>
+<pre class="r"><code>factor_one &lt;- as.factor(c(&quot;A&quot;,&quot;B&quot;,&quot;C&quot;))
+dv_means &lt;- c(20,30,40)
+dv_SEs   &lt;- c(4,3.4,4)
+plot_df &lt;- data.frame(factor_one,
+                      dv_means,
+                      dv_SEs)
+
+ggplot(plot_df, aes(x=factor_one,y=dv_means))+
+  geom_bar(stat=&quot;identity&quot;)</code></pre>
+<p><img src="examples_files/figure-html/unnamed-chunk-2-1.png" width="672" /></p>
+</div>
+<div id="line-graph" class="section level3">
+<h3>Line Graph</h3>
+<pre class="r"><code>#Create a dataframe
+factor_one &lt;- as.factor(c(&quot;A&quot;,&quot;B&quot;,&quot;C&quot;))
+dv_means &lt;- c(20,30,40)
+dv_SEs   &lt;- c(4,3.4,4)
+plot_df &lt;- data.frame(factor_one,
+                      dv_means,
+                      dv_SEs)
+
+# basic line graph
+
+ggplot(plot_df, aes(x=factor_one,y=dv_means, group=1))+
+  geom_point()+
+  geom_line()</code></pre>
+<p><img src="examples_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
+</div>
+<div id="make-a-histogram" class="section level3">
+<h3>Make a Histogram</h3>
+<pre class="r"><code>score &lt;- rnorm(100,0,1)
+n &lt;- 1:100
+plot_df &lt;- data.frame(score,n)
+
+ggplot(plot_df, aes(x=score))+
+  geom_histogram(bins=10,
+                 color=&quot;white&quot;)</code></pre>
+<p><img src="examples_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
 </div>
 </div>
 
