@@ -11,7 +11,7 @@
 
 
 
-<title>class examples data frame</title>
+<title>GG-Plot Exercises</title>
 
 <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -406,19 +406,29 @@ div.tocify {
 
 
 
-<h1 class="title toc-ignore">class examples data frame</h1>
+<h1 class="title toc-ignore">GG-Plot Exercises</h1>
 
 </div>
 
 
-<div id="data-frame-examples" class="section level3">
-<h3>data frame examples</h3>
-<pre class="r"><code>Names &lt;- c(&quot;Ang&quot;,&quot;Ana&quot;, &quot;Nori&quot;)
-Age&lt;- c(23,24,28)
-gender&lt;-c(&quot;f&quot;,&quot;f&quot;,&quot;f&quot;)
+<div id="examples-for-how-to-turn-data-into-different-graphs" class="section level2">
+<h2>Examples for how to turn data into different graphs</h2>
+<div id="scatterplot-with-a-regression-line" class="section level3">
+<h3>1. ScatterPlot with a Regression Line</h3>
+<pre class="r"><code>AvNonRisk &lt;- c(1,2,3,2,3,4,5,4)
+AvSocialRisk &lt;- c(4,3,4,3,2,1,2,3)
+plot_df &lt;- data.frame(AvNonRisk,AvSocialRisk)
 
-data&lt;-data.frame(Names, Age, gender)</code></pre>
-<p>```</p>
+
+ggplot(plot_df, aes(x=AvNonRisk,y=AvSocialRisk))+
+  geom_point()+
+  xlab(&quot;Average Frequency Non Social Risk&quot;)+
+  ylab(&quot;Average Frequency Social Risk&quot;)+
+  ggtitle(&quot;Scatterplot with Regression&quot;)+
+  theme_classic(base_size=12)+
+  theme(plot.title = element_text(hjust = 0.5))</code></pre>
+<p><img src="examples_files/figure-html/unnamed-chunk-1-1.png" width="672" /></p>
+</div>
 </div>
 
 

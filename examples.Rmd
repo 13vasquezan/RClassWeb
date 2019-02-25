@@ -1,5 +1,5 @@
 ---
-title: "class examples data frame"
+title: "GG-Plot Exercises"
 output:
   html_document:
     toc: true
@@ -13,17 +13,24 @@ output:
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(message=FALSE,warning=FALSE, cache=TRUE)
 ```
-###data frame examples
+##Examples for how to turn data into different graphs
 
+
+###1. ScatterPlot with a Regression Line
 ```{r}
-Names <- c("Ang","Ana", "Nori")
-Age<- c(23,24,28)
-gender<-c("f","f","f")
 
-data<-data.frame(Names, Age, gender)
+AvNonRisk <- c(1,2,3,2,3,4,5,4)
+AvSocialRisk <- c(4,3,4,3,2,1,2,3)
+plot_df <- data.frame(AvNonRisk,AvSocialRisk)
 
-```
+
+ggplot(plot_df, aes(x=AvNonRisk,y=AvSocialRisk))+
+  geom_point()+
+  xlab("Average Frequency Non Social Risk")+
+  ylab("Average Frequency Social Risk")+
+  ggtitle("Scatterplot with Regression")+
+  theme_classic(base_size=12)+
+  theme(plot.title = element_text(hjust = 0.5))
 
        
 ```
-
