@@ -10,6 +10,8 @@ navbar:
       href: RIntrinsics.html
     - text: "Harder Problems"
       href: HarderProblems.html
+    - text: "GG-Plot"
+      href: examples.html
     - text: "Links"
       href: Links.html
 output_dir: "docs"
