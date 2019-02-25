@@ -1,0 +1,36 @@
+---
+title: "class examples data frame"
+output:
+  html_document:
+    toc: true
+    toc_float: true
+    collapsed: false
+    number_sections: false
+    toc_depth: 1
+    #code_folding: hide
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(message=FALSE,warning=FALSE, cache=TRUE)
+```
+###data frame examples
+
+```{r}
+Names <- c("Ang","Ana", "Nori")
+Age<- c(23,24,28)
+gender<-c("f","f","f")
+
+data<-data.frame(Names, Age, gender)
+
+```
+```{r}
+# Create dataframe
+a <- c(1,2,3,2,3,4,5,4)
+b <- c(4,3,4,3,2,1,2,3)
+plot_df <- data.frame(a,b)
+
+# basic scatterplot
+ggplot(plot_df, aes(x=a,y=b))+
+  geom_point()
+```
+
