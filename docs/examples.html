@@ -413,6 +413,9 @@ div.tocify {
 
 <div id="examples-for-how-to-turn-data-into-different-graphs" class="section level2">
 <h2>Examples for how to turn data into different graphs</h2>
+<div id="example-of-line-graph" class="section level3">
+<h3>1. Example of line graph</h3>
+<p>Two conditions and Two different lines to indicate significance</p>
 <pre class="r"><code>library(ggplot2)
 
 # add &quot;each&quot; to keep both copies of the names together 
@@ -429,15 +432,19 @@ ggplot(plot_df, aes(x=Condition, y=MF, group=Names,
   geom_text(label=Names)+
   theme_classic()</code></pre>
 <p><img src="examples_files/figure-html/unnamed-chunk-1-1.png" width="672" /></p>
+</div>
 <div id="scatterplot-with-a-regression-line" class="section level3">
-<h3>1. ScatterPlot with a Regression Line</h3>
-<pre class="r"><code>AvNonRisk &lt;- c(1,2,3,2,3,4,5,4)
-AvSocialRisk &lt;- c(4,3,4,3,2,1,2,3)
+<h3>2. ScatterPlot with a Regression Line</h3>
+<pre class="r"><code>AvNonRisk &lt;- rnorm(8,40,2)
+AvSocialRisk &lt;- rnorm(8,40,2)
 plot_df &lt;- data.frame(AvNonRisk,AvSocialRisk)
 
 
 ggplot(plot_df, aes(x=AvNonRisk,y=AvSocialRisk))+
   geom_point()+
+  geom_point(size=2)+
+  geom_smooth(method=lm)+
+  
   xlab(&quot;Average Frequency Non Social Risk&quot;)+
   ylab(&quot;Average Frequency Social Risk&quot;)+
   ggtitle(&quot;Scatterplot with Regression&quot;)+

@@ -15,6 +15,9 @@ knitr::opts_chunk$set(message=FALSE,warning=FALSE, cache=TRUE)
 ```
 ##Examples for how to turn data into different graphs
 
+###1. Example of line graph
+Two conditions and Two different lines to indicate significance
+
 ```{r}
 library(ggplot2)
 
@@ -36,16 +39,19 @@ ggplot(plot_df, aes(x=Condition, y=MF, group=Names,
 
 
 
-###1. ScatterPlot with a Regression Line
+###2. ScatterPlot with a Regression Line
 ```{r}
 
-AvNonRisk <- c(1,2,3,2,3,4,5,4)
-AvSocialRisk <- c(4,3,4,3,2,1,2,3)
+AvNonRisk <- rnorm(8,40,2)
+AvSocialRisk <- rnorm(8,40,2)
 plot_df <- data.frame(AvNonRisk,AvSocialRisk)
 
 
 ggplot(plot_df, aes(x=AvNonRisk,y=AvSocialRisk))+
   geom_point()+
+  geom_point(size=2)+
+  geom_smooth(method=lm)+
+  
   xlab("Average Frequency Non Social Risk")+
   ylab("Average Frequency Social Risk")+
   ggtitle("Scatterplot with Regression")+
