@@ -413,15 +413,17 @@ div.tocify {
 
 <div id="examples-for-how-to-turn-data-into-different-graphs" class="section level2">
 <h2>Examples for how to turn data into different graphs</h2>
-<pre class="r"><code># add &quot;each&quot; to keep both copies of the names together 
-Names &lt;- rep(c(&quot;Dara&quot;,&quot;Azalea&quot;,&quot;Barbi&quot;,&quot;Rowena&quot;,&quot;Fiona&quot;),each=2)
-MF &lt;- rnorm(10,45,25) 
-Condition &lt;- rep(c(&quot;Social&quot;,&quot;Nonsocial&quot;),5)
+<pre class="r"><code>library(ggplot2)
+
+# add &quot;each&quot; to keep both copies of the names together 
+Names &lt;- rep(c(&quot;Dara&quot;,&quot;Azalea&quot;,&quot;Barbi&quot;,&quot;Rowena&quot;,&quot;Fiona&quot;,&quot;Katie&quot;,&quot;Liza&quot;,&quot;Rita&quot;),each=2)
+MF &lt;- rnorm(16,50,25) 
+Condition &lt;-rep(c(&quot;Social&quot;,&quot;Nonsocial&quot;),8)
 # &quot;times=&quot; to repeat how many times you want A and N_A to be repeated 
-Aversity &lt;- rep(c(&quot;A&quot;,&quot;N_A&quot;),times=c(4,6))
+Aversity &lt;- rep(c(&quot;A&quot;,&quot;N_A&quot;),times=c(8,8))
 plot_df&lt;- data.frame(Names, MF, Condition) 
 
-ggplot(plot_df, aes(x=Condition, y=MF, group=Names, 
+ggplot(plot_df, aes(x=Condition, y=MF, group=Names,
                     linetype=Aversity))+ 
   geom_line()+
   geom_text(label=Names)+
