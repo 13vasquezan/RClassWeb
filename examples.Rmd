@@ -60,16 +60,18 @@ ggplot(plot_df, aes(x=AvNonRisk,y=AvSocialRisk))+
 
        
 ```
+
 ###2.Bar Graphs
 ```{r}
-factor_one <- as.factor(c("A","B","C"))
-dv_means <- c(20,30,40)
+factor_one <- as.factor(c("Fill","Empty"))
+factor_two <- as.factor(c("Wide Base","Wide Top"))
+dv_means <- c(2,30,40)
 dv_SEs   <- c(4,3.4,4)
 plot_df <- data.frame(factor_one,
                       dv_means,
                       dv_SEs)
 
-ggplot(plot_df, aes(x=factor_one,y=dv_means))+
+ggplot(plot_df, aes(x=factor_one, x=factor_two,y=dv_means))+
   geom_bar(stat="identity")
 ```
 
