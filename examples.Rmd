@@ -63,21 +63,26 @@ ggplot(plot_df, aes(x=AvNonRisk,y=AvSocialRisk))+
 
 ###2.Bar Graphs
 ```{r}
-factor_one <- as.factor(c("Fill","Empty"))
-factor_two <- as.factor(c("Wide Base","Wide Top"))
-dv_means <- c(2,30,40)
-dv_SEs   <- c(4,3.4,4)
+library(ggplot2)
+#Create a dataframe
+factor_one <- rep(as.factor(c("Fill","Empty")),2)
+factor_two <- rep(as.factor(c("Wide Base","Wide Top")),2)
+dv_means <- c(19.5,17.5,18.5,18)
 plot_df <- data.frame(factor_one,
-                      dv_means,
-                      dv_SEs)
+                      factor_two,
+                      dv_means)
+                      
+ggplot(plot_df, aes(x=factor_one,y=dv_means,
+                    group=factor_two,
+                    color=factor_two))+
+  geom_bar(stat="identity", position= "dodge")
 
-ggplot(plot_df, aes(x=factor_one, x=factor_two,y=dv_means))+
-  geom_bar(stat="identity")
+
+
 ```
 
 ###Line Graph
 ```{r}
-#Create a dataframe
 factor_one <- as.factor(c("A","B","C"))
 dv_means <- c(20,30,40)
 dv_SEs   <- c(4,3.4,4)
@@ -90,6 +95,7 @@ plot_df <- data.frame(factor_one,
 ggplot(plot_df, aes(x=factor_one,y=dv_means, group=1))+
   geom_point()+
   geom_line()
+
 ```
 
 
