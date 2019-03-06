@@ -75,28 +75,44 @@ plot_df <- data.frame(factor_one,
 ggplot(plot_df, aes(x=factor_one,y=dv_means,
                     group=factor_two,
                     color=factor_two))+
-  geom_bar(stat="identity", position= "dodge")
-
+  geom_bar(stat="identity",position = "dodge")+
+   xlab("First factor")+
+  ylab("Estimate(xids)")+
+  ggtitle("Two Factor Bar Graph")+
+  theme_classic(base_size=12)+
+  theme(plot.title = element_text(hjust = 0.5))
 
 
 ```
 
 ###Line Graph
 ```{r}
-factor_one <- as.factor(c("A","B","C"))
-dv_means <- c(20,30,40)
-dv_SEs   <- c(4,3.4,4)
+factor_one <-c(-25,-8,8,25)
+dv_means <- c(4.7,4.9,5,5.3)
+dv_SEs   <- c(.5,.4,.3,.3)
 plot_df <- data.frame(factor_one,
                       dv_means,
                       dv_SEs)
+
+                      
 
 # basic line graph
 
 ggplot(plot_df, aes(x=factor_one,y=dv_means, group=1))+
   geom_point()+
-  geom_line()
+  geom_line()+
+   geom_errorbar(aes(ymin=dv_means-dv_SEs,
+                    ymax=dv_means+dv_SEs),
+                width=.2)+
+  coord_cartesian(ylim=c(4,6))+
+  xlab("Manipulation (%)")+
+  ylab("Mean rating")+
+  ggtitle("Male Faces")+
+  theme_classic(base_size=12)+
+  theme(plot.title = element_text(hjust = 0.5))
 
 ```
+
 
 
 ###Make a Histogram

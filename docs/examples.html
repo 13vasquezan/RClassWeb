@@ -469,23 +469,39 @@ plot_df &lt;- data.frame(factor_one,
 ggplot(plot_df, aes(x=factor_one,y=dv_means,
                     group=factor_two,
                     color=factor_two))+
-  geom_bar(stat=&quot;identity&quot;, position= &quot;dodge&quot;)</code></pre>
+  geom_bar(stat=&quot;identity&quot;,position = &quot;dodge&quot;)+
+   xlab(&quot;First factor&quot;)+
+  ylab(&quot;Estimate(xids)&quot;)+
+  ggtitle(&quot;Two Factor Bar Graph&quot;)+
+  theme_classic(base_size=12)+
+  theme(plot.title = element_text(hjust = 0.5))</code></pre>
 <p><img src="examples_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
 </div>
 <div id="line-graph" class="section level3">
 <h3>Line Graph</h3>
-<pre class="r"><code>factor_one &lt;- as.factor(c(&quot;A&quot;,&quot;B&quot;,&quot;C&quot;))
-dv_means &lt;- c(20,30,40)
-dv_SEs   &lt;- c(4,3.4,4)
+<pre class="r"><code>factor_one &lt;-c(-25,-8,8,25)
+dv_means &lt;- c(4.7,4.9,5,5.3)
+dv_SEs   &lt;- c(.5,.4,.3,.3)
 plot_df &lt;- data.frame(factor_one,
                       dv_means,
                       dv_SEs)
+
+                      
 
 # basic line graph
 
 ggplot(plot_df, aes(x=factor_one,y=dv_means, group=1))+
   geom_point()+
-  geom_line()</code></pre>
+  geom_line()+
+   geom_errorbar(aes(ymin=dv_means-dv_SEs,
+                    ymax=dv_means+dv_SEs),
+                width=.2)+
+  coord_cartesian(ylim=c(4,6))+
+  xlab(&quot;Manipulation (%)&quot;)+
+  ylab(&quot;Mean rating&quot;)+
+  ggtitle(&quot;Male Faces&quot;)+
+  theme_classic(base_size=12)+
+  theme(plot.title = element_text(hjust = 0.5))</code></pre>
 <p><img src="examples_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
 </div>
 <div id="make-a-histogram" class="section level3">
