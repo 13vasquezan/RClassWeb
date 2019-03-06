@@ -25,7 +25,7 @@ The code chunk below assumes that you have placed the folder FlankerData into yo
 
 ```{r}
 
-
+library(data.table)
 library(dplyr)
 library(ggplot2)
 
