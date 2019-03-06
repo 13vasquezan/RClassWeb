@@ -4,6 +4,12 @@ knitr::opts_chunk$set(echo = TRUE, warning=FALSE, message = FALSE)
 
 ## Flanker task
 
+```{r}
+library(dplyr)
+df<-starwars
+```
+
+
 In a flanker task, participants identify a central stimulus (as quickly and accurately) as possible, while ignoring distracting stimuli presented on the left or right of the central stimulus (the flankers). 
 
 For example, the stimulus could be "HHH", and the correct response would be H. This is called a compatible (or congruent) stimulus because the flanking Hs are the same as the central stimulus. Alternatively, the stimulus could be "HSH", and the correct resposne would be S. This is called an incompatible (or incongruent) stimulus because the flanking Hs are different from the central stimulus. 
