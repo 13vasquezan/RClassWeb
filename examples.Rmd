@@ -117,12 +117,18 @@ ggplot(plot_df, aes(x=factor_one,y=dv_means, group=1))+
 
 ###Make a Histogram
 ```{r}
-score <- rnorm(100,0,1)
-n <- 1:100
+score <- rnorm(152,0,1)
+n <- 1:152
 plot_df <- data.frame(score,n)
 
 ggplot(plot_df, aes(x=score))+
-  geom_histogram(bins=10,
-                 color="white")
+  geom_histogram(bins=15,
+                 color="white")+
+  coord_cartesian(ylim=c(0,40))+
+   xlab("Log Likleyhood ratio")+
+  ylab("Participants in each condition")+
+  ggtitle("Man Performed Surgery n=152")+
+  theme_classic(base_size=12)+
+  theme(plot.title = element_text(hjust = 0.5))
 ```
 
