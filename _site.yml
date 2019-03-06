@@ -12,6 +12,8 @@ navbar:
       href: HarderProblems.html
     - text: "GG-Plot"
       href: examples.html
+    - text: "Data Wrangling"
+      href: DataWrangleFlankerAV.html
     - text: "Links"
       href: Links.html
 output_dir: "docs"
