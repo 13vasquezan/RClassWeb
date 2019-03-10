@@ -59,6 +59,14 @@ for(i in file_names){
 A correct response occurs when the letter in the response column is the same as the letter in the middle position of item in the stimulus column. Create an accuracy column that codes whether the response was correct or incorrect on each trial (coding can be TRUE/FALSE, 0/1, or some other coding scheme that identifies correct vs incorrect)
 
 ```{r}
+  
+if(all_data$response==all_data$stimulus[2])
+print(True)
+  
+
+
+
+
 
 
 ```
@@ -80,6 +88,8 @@ Check how many trials each subject completed in the congruent and incongruent co
 
 ```{r}
 
+MeanRT<-(mean(all_data$response_time))
+print(MeanRT)
 
 ```
 
