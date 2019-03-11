@@ -70,11 +70,10 @@ all_data<-all_data %>%
     accuracy=response==center_let)
   
 
-  
+```
 
-
-
-
+```{r}
+# loop
 
 
 ```
