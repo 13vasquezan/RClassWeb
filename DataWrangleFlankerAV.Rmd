@@ -86,6 +86,9 @@ The stimulus_onset column gives a computer timestamp in milliseconds indicating 
 
 ```{r}
 
+all_data <- all_data %>%
+              mutate(RT = as.integer(response_time - stimulus_onset))
+
 ```
 
 
