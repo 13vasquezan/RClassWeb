@@ -98,9 +98,14 @@ Check how many trials each subject completed in the congruent and incongruent co
 
 ```{r}
 
-MeanRT<-(mean(all_data$response_time))
-print(MeanRT)
-
+check_subjects <- all_data %>%
+                  mutate(subject = as.factor(subject),
+                         congruency = as.factor(congruency)) %>%
+                  group_by(subject,congruency) %>%
+                  summarise(num_trials = length(RT),
+                            mean_RT = mean(RT),
+                            mean_accuracy = mean(accuracy))
+knitr::kable(check_subjects)
 ```
 
 
@@ -110,7 +115,8 @@ print(MeanRT)
 It is common to exclude Reaction times that are very slow. There are many methods and procedures for excluding outlying reaction times. To keep it simple, exclude all RTs that are longer than 2000 ms
 
 ```{r}
-
+restricted <- all_data %>%
+              filter(RT < 2000)
 ```
 
 ## Analysis
@@ -120,14 +126,34 @@ It is common to exclude Reaction times that are very slow. There are many method
 1. Get the individual subject mean reaction times for **correct** congruent and incongruent trials.
 
 ```{r}
-
+subject_meanRTs <- restricted %>%
+                    filter(accuracy == TRUE) %>%
+                    group_by(subject,congruency) %>%
+                    summarise(mean_RT = mean(RT))
 ```
 
 2. Get the overall mean RTs and SEMs (standard errors of the mean) for the congruent and incongruent condition. Make a table and graph.
 
 ```{r}
 
-  
+ congruency_means <- subject_meanRTs %>%
+                      group_by(congruency) %>%
+                      summarise(meanRT = mean(mean_RT),
+                                SEM = sd(mean_RT)/sqrt(length(mean_RT)))
+knitr::kable(congruency_means)
+
+ggplot(congruency_means, aes(x=congruency,y=meanRT,
+                             fill=congruency))+
+  geom_bar(stat="identity")+
+  theme_classic(base_size=12)+
+  ylab("Mean Reaction Time (ms)")+
+  geom_errorbar(aes(ymin=meanRT-SEM,
+                    ymax=meanRT+SEM),
+                position=position_dodge(width=0.9),
+                width=.2,
+                color="black")+
+  coord_cartesian(ylim=c(700,1000))
+
   
 ```
 
