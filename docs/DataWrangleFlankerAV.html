@@ -362,8 +362,10 @@ all_data&lt;-all_data %&gt;%
 <div id="get-reaction-time-on-each-trial" class="section level3">
 <h3>Get Reaction time on each trial</h3>
 <p>Add a column that calculates the reaction time on each trial.</p>
-<pre class="r"><code>all_data &lt;- all_data %&gt;%
-              mutate(RT = as.integer(response_time - stimulus_onset))</code></pre>
+<pre class="r"><code># Somehow the stimulus and the response time are the same number?
+
+all_data &lt;- all_data %&gt;%
+              mutate(RT =response_time - stimulus_onset)</code></pre>
 </div>
 </div>
 <div id="checks" class="section level2">
@@ -701,7 +703,8 @@ knitr::kable(Sub_Trials)</code></pre>
 <div id="exclusion" class="section level3">
 <h3>Exclusion</h3>
 <p>Exclude all RTs that are longer than 2000 ms</p>
-<pre class="r"><code>Slow_RT &lt;- all_data %&gt;%
+<pre class="r"><code># Reaction Time =0 somehow the stimulus and response are the same number
+Slow_RT &lt;- all_data %&gt;%
               filter(RT &lt; 2000)</code></pre>
 </div>
 </div>
@@ -712,14 +715,14 @@ knitr::kable(Sub_Trials)</code></pre>
 <ol style="list-style-type: decimal">
 <li>Get the individual subject mean reaction times for <strong>correct</strong> congruent and incongruent trials.</li>
 </ol>
-<pre class="r"><code>subject_meanRTs &lt;- Slow_RT %&gt;%
+<pre class="r"><code>Subject_Trials_meanRTs &lt;- Slow_RT %&gt;%
                     filter(accuracy == TRUE) %&gt;%
                     group_by(subject,congruency) %&gt;%
                     summarise(mean_RT = mean(RT))</code></pre>
 <ol start="2" style="list-style-type: decimal">
 <li>Get the overall mean RTs and SEMs (standard errors of the mean) for the congruent and incongruent condition. Make a table and graph.</li>
 </ol>
-<pre class="r"><code> congruency_means &lt;- subject_meanRTs %&gt;%
+<pre class="r"><code> congruency_means &lt;- Subject_Trials_meanRTs %&gt;%
                       group_by(congruency) %&gt;%
                       summarise(meanRT = mean(mean_RT),
                                 SEM = sd(mean_RT)/sqrt(length(mean_RT)))
@@ -749,13 +752,13 @@ knitr::kable(congruency_means)</code></pre>
                              fill=congruency))+
   geom_bar(stat=&quot;identity&quot;)+
   theme_classic(base_size=12)+
-  ylab(&quot;Mean Reaction Time (ms)&quot;)+
+  ylab(&quot;Mean Reaction Time &quot;)+
   geom_errorbar(aes(ymin=meanRT-SEM,
                     ymax=meanRT+SEM),
                 position=position_dodge(width=0.9),
                 width=.2,
                 color=&quot;black&quot;)+
-  coord_cartesian(ylim=c(700,1000))</code></pre>
+  coord_cartesian(ylim=c(100,1000))</code></pre>
 <p><img src="DataWrangleFlankerAV_files/figure-html/unnamed-chunk-7-1.png" width="672" /></p>
 <ol start="3" style="list-style-type: decimal">
 <li>Compute the flanker effect for each subject, taking the difference between their mean incongruent and congruent RT. Then plot the mean flanker effect, along with the SEM of the mean flanker effect</li>
