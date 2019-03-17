@@ -318,14 +318,10 @@ $(document).ready(function () {
 <div id="flanker-task" class="section level2">
 <h2>Flanker task</h2>
 <p>In a flanker task, participants identify a central stimulus (as quickly and accurately) as possible, while ignoring distracting stimuli presented on the left or right of the central stimulus (the flankers).</p>
-<p>For example, the stimulus could be “HHH”, and the correct response would be H. This is called a compatible (or congruent) stimulus because the flanking Hs are the same as the central stimulus. Alternatively, the stimulus could be “HSH”, and the correct resposne would be S. This is called an incompatible (or incongruent) stimulus because the flanking Hs are different from the central stimulus.</p>
 <p>The data for this assignment come from a flanker task where participants responded to many flanker stimuli over several trials.</p>
 </div>
 <div id="load-the-data-and-libraries-you-will-use" class="section level2">
 <h2>Load the data and libraries you will use</h2>
-<p>I will help you with some sample code that compiles all of the text files in a single long format data frame.</p>
-<p>The data is contained in this .zip file: <a href="https://crumplab.github.io/psyc7709/Presentations/FlankerData.zip">FlankerData.zip</a></p>
-<p>The code chunk below assumes that you have placed the folder FlankerData into your R project folder.</p>
 <pre class="r"><code>library(data.table)
 library(dplyr)
 library(ggplot2)
@@ -353,9 +349,7 @@ for(i in file_names){
 </div>
 <div id="pre-processing" class="section level2">
 <h2>Pre-processing</h2>
-<div id="get-accuracy-for-each-trial" class="section level3">
-<h3>get accuracy for each trial</h3>
-<p>A correct response occurs when the letter in the response column is the same as the letter in the middle position of item in the stimulus column. Create an accuracy column that codes whether the response was correct or incorrect on each trial (coding can be TRUE/FALSE, 0/1, or some other coding scheme that identifies correct vs incorrect)</p>
+<p>Create an accuracy column that codes whether the response was correct or incorrect on each trial</p>
 <pre class="r"><code>center_let&lt;-unlist(lapply(strsplit(all_data$stimulus,&quot;&quot;),
                          FUN=function(x)unlist(x)[2]))
 
@@ -365,12 +359,9 @@ all_data&lt;-all_data %&gt;%
     mutate(response=tolower(response),
     center_let=tolower(center_let),
     accuracy=response==center_let)</code></pre>
-<pre class="r"><code># loop</code></pre>
-</div>
 <div id="get-reaction-time-on-each-trial" class="section level3">
 <h3>Get Reaction time on each trial</h3>
-<p>The stimulus_onset column gives a computer timestamp in milliseconds indicating when the stimulus was presented. The response_time column is a timestamp in milliseconds for the response. The difference between the two (response_time - stimulus_onset) is the reaction time in milliseconds. Add a column that calculates the reaction time on each trial.</p>
-<p>**<a href="tip:**" class="uri">tip:**</a> notice that the numbers in response_time and stimulus_onset have the class integer64. Unfortunately, ggplot does not play nice with integers in this format. you will need to make sure your RT column is in the class integer or numeric.</p>
+<p>Add a column that calculates the reaction time on each trial.</p>
 <pre class="r"><code>all_data &lt;- all_data %&gt;%
               mutate(RT = as.integer(response_time - stimulus_onset))</code></pre>
 </div>
@@ -378,14 +369,14 @@ all_data&lt;-all_data %&gt;%
 <div id="checks" class="section level2">
 <h2>Checks</h2>
 <p>Check how many trials each subject completed in the congruent and incongruent conditions, the mean accuracy for each subject in each congruency condition, and the mean RT for each subject in each congruency condition.</p>
-<pre class="r"><code>check_subjects &lt;- all_data %&gt;%
+<pre class="r"><code>Sub_Trials &lt;- all_data %&gt;%
                   mutate(subject = as.factor(subject),
                          congruency = as.factor(congruency)) %&gt;%
                   group_by(subject,congruency) %&gt;%
                   summarise(num_trials = length(RT),
                             mean_RT = mean(RT),
                             mean_accuracy = mean(accuracy))
-knitr::kable(check_subjects)</code></pre>
+knitr::kable(Sub_Trials)</code></pre>
 <table>
 <thead>
 <tr class="header">
@@ -709,8 +700,8 @@ knitr::kable(check_subjects)</code></pre>
 </table>
 <div id="exclusion" class="section level3">
 <h3>Exclusion</h3>
-<p>It is common to exclude Reaction times that are very slow. There are many methods and procedures for excluding outlying reaction times. To keep it simple, exclude all RTs that are longer than 2000 ms</p>
-<pre class="r"><code>restricted &lt;- all_data %&gt;%
+<p>Exclude all RTs that are longer than 2000 ms</p>
+<pre class="r"><code>Slow_RT &lt;- all_data %&gt;%
               filter(RT &lt; 2000)</code></pre>
 </div>
 </div>
@@ -721,7 +712,7 @@ knitr::kable(check_subjects)</code></pre>
 <ol style="list-style-type: decimal">
 <li>Get the individual subject mean reaction times for <strong>correct</strong> congruent and incongruent trials.</li>
 </ol>
-<pre class="r"><code>subject_meanRTs &lt;- restricted %&gt;%
+<pre class="r"><code>subject_meanRTs &lt;- Slow_RT %&gt;%
                     filter(accuracy == TRUE) %&gt;%
                     group_by(subject,congruency) %&gt;%
                     summarise(mean_RT = mean(RT))</code></pre>
@@ -765,7 +756,7 @@ knitr::kable(congruency_means)</code></pre>
                 width=.2,
                 color=&quot;black&quot;)+
   coord_cartesian(ylim=c(700,1000))</code></pre>
-<p><img src="DataWrangleFlankerAV_files/figure-html/unnamed-chunk-9-1.png" width="672" /></p>
+<p><img src="DataWrangleFlankerAV_files/figure-html/unnamed-chunk-7-1.png" width="672" /></p>
 <ol start="3" style="list-style-type: decimal">
 <li>Compute the flanker effect for each subject, taking the difference between their mean incongruent and congruent RT. Then plot the mean flanker effect, along with the SEM of the mean flanker effect</li>
 </ol>

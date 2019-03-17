@@ -4,24 +4,13 @@ knitr::opts_chunk$set(echo = TRUE, warning=FALSE, message = FALSE)
 
 ## Flanker task
 
-```{r}
-
-```
-
 
 In a flanker task, participants identify a central stimulus (as quickly and accurately) as possible, while ignoring distracting stimuli presented on the left or right of the central stimulus (the flankers). 
-
-For example, the stimulus could be "HHH", and the correct response would be H. This is called a compatible (or congruent) stimulus because the flanking Hs are the same as the central stimulus. Alternatively, the stimulus could be "HSH", and the correct resposne would be S. This is called an incompatible (or incongruent) stimulus because the flanking Hs are different from the central stimulus. 
 
 The data for this assignment come from a flanker task where participants responded to many flanker stimuli over several trials. 
 
 ## Load the data and libraries you will use
 
-I will help you with some sample code that compiles all of the text files in a single long format data frame.
-
-The data is contained in this .zip file: [FlankerData.zip](https://crumplab.github.io/psyc7709/Presentations/FlankerData.zip)
-
-The code chunk below assumes that you have placed the folder FlankerData into your R project folder. 
 
 ```{r}
 
@@ -54,9 +43,7 @@ for(i in file_names){
 
 ## Pre-processing
 
-### get accuracy for each trial
-
-A correct response occurs when the letter in the response column is the same as the letter in the middle position of item in the stimulus column. Create an accuracy column that codes whether the response was correct or incorrect on each trial (coding can be TRUE/FALSE, 0/1, or some other coding scheme that identifies correct vs incorrect)
+Create an accuracy column that codes whether the response was correct or incorrect on each trial 
 
 ```{r}
 center_let<-unlist(lapply(strsplit(all_data$stimulus,""),
@@ -72,22 +59,17 @@ all_data<-all_data %>%
 
 ```
 
-```{r}
-# loop
-
-
-```
-
 ### Get Reaction time on each trial
 
-The stimulus_onset column gives a computer timestamp in milliseconds indicating when the stimulus was presented. The response_time column is a timestamp in milliseconds for the response. The difference between the two (response_time  - stimulus_onset) is the reaction time in milliseconds. Add a column that calculates the reaction time on each trial.
+ Add a column that calculates the reaction time on each trial.
 
-**tip:** notice that the numbers in response_time and stimulus_onset have the class integer64. Unfortunately, ggplot does not play nice with integers in this format. you will need to make sure your RT column is in the class integer or numeric.
 
 ```{r}
 
+# Somehow the stimulus and the response time are the same number?
+
 all_data <- all_data %>%
-              mutate(RT = as.integer(response_time - stimulus_onset))
+              mutate(RT =response_time - stimulus_onset)
 
 ```
 
@@ -98,24 +80,26 @@ Check how many trials each subject completed in the congruent and incongruent co
 
 ```{r}
 
-check_subjects <- all_data %>%
+Sub_Trials <- all_data %>%
                   mutate(subject = as.factor(subject),
                          congruency = as.factor(congruency)) %>%
                   group_by(subject,congruency) %>%
                   summarise(num_trials = length(RT),
                             mean_RT = mean(RT),
                             mean_accuracy = mean(accuracy))
-knitr::kable(check_subjects)
+knitr::kable(Sub_Trials)
 ```
 
 
 
 ### Exclusion
 
-It is common to exclude Reaction times that are very slow. There are many methods and procedures for excluding outlying reaction times. To keep it simple, exclude all RTs that are longer than 2000 ms
+Exclude all RTs that are longer than 2000 ms
 
 ```{r}
-restricted <- all_data %>%
+
+# Reaction Time =0 somehow the stimulus and response are the same number
+Slow_RT <- all_data %>%
               filter(RT < 2000)
 ```
 
@@ -126,7 +110,7 @@ restricted <- all_data %>%
 1. Get the individual subject mean reaction times for **correct** congruent and incongruent trials.
 
 ```{r}
-subject_meanRTs <- restricted %>%
+Subject_Trials_meanRTs <- Slow_RT %>%
                     filter(accuracy == TRUE) %>%
                     group_by(subject,congruency) %>%
                     summarise(mean_RT = mean(RT))
@@ -136,7 +120,7 @@ subject_meanRTs <- restricted %>%
 
 ```{r}
 
- congruency_means <- subject_meanRTs %>%
+ congruency_means <- Subject_Trials_meanRTs %>%
                       group_by(congruency) %>%
                       summarise(meanRT = mean(mean_RT),
                                 SEM = sd(mean_RT)/sqrt(length(mean_RT)))
@@ -146,13 +130,13 @@ ggplot(congruency_means, aes(x=congruency,y=meanRT,
                              fill=congruency))+
   geom_bar(stat="identity")+
   theme_classic(base_size=12)+
-  ylab("Mean Reaction Time (ms)")+
+  ylab("Mean Reaction Time ")+
   geom_errorbar(aes(ymin=meanRT-SEM,
                     ymax=meanRT+SEM),
                 position=position_dodge(width=0.9),
                 width=.2,
                 color="black")+
-  coord_cartesian(ylim=c(700,1000))
+  coord_cartesian(ylim=c(100,1000))
 
   
 ```
