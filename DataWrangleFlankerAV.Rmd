@@ -17,6 +17,7 @@ The data for this assignment come from a flanker task where participants respond
 library(data.table)
 library(dplyr)
 library(ggplot2)
+library(bit64)
 
 
 # get the file names
@@ -69,7 +70,7 @@ all_data<-all_data %>%
 # Somehow the stimulus and the response time are the same number?
 
 all_data <- all_data %>%
-              mutate(RT =response_time - stimulus_onset)
+              mutate(RT = as.integer(response_time - stimulus_onset))
 
 ```
 
