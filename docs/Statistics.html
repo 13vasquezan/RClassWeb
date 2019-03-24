@@ -417,7 +417,17 @@ div.tocify {
 </div>
 
 
-
+<div id="null-distributions" class="section level3">
+<h3>Null Distributions</h3>
+<ol style="list-style-type: decimal">
+<li>Sample from normal distribution</li>
+</ol>
+<pre class="r"><code>Stat&lt;-rnorm(100,0,1)</code></pre>
+<ol start="2" style="list-style-type: decimal">
+<li>Get the mean differences</li>
+</ol>
+<pre class="r"><code>null &lt;- replicate(10000,mean(rnorm(10,0,1)-mean(rnorm(10,0,1))))                </code></pre>
+</div>
 
 
 

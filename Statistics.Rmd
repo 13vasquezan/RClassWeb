@@ -13,4 +13,14 @@ output:
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(message=FALSE,warning=FALSE, cache=TRUE)
 ```
+###Null Distributions
+1) Sample from normal distribution
+
+```{r}
+Stat<-rnorm(100,0,1)
+```
+2) Get the mean differences
+```{r}
+null <- replicate(10000,mean(rnorm(10,0,1)-mean(rnorm(10,0,1))))                
+```
 
