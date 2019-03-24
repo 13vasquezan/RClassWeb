@@ -427,6 +427,40 @@ div.tocify {
 <li>Get the mean differences</li>
 </ol>
 <pre class="r"><code>null &lt;- replicate(10000,mean(rnorm(10,0,1)-mean(rnorm(10,0,1))))                </code></pre>
+<ol start="3" style="list-style-type: decimal">
+<li>Get alpha level relationships</li>
+</ol>
+<pre class="r"><code>#directional positive
+sorted_null &lt;- sort(null)
+sorted_null[9500]</code></pre>
+<pre><code>## [1] 0.7259866</code></pre>
+<pre class="r"><code>#nondirectional
+sorted_null &lt;- sort(abs(null))
+sorted_null[9500]</code></pre>
+<pre><code>## [1] 0.8784433</code></pre>
+</div>
+<div id="t-test" class="section level3">
+<h3>T test</h3>
+<pre class="r"><code>t_dist &lt;- replicate(10000,t.test(rnorm(10,0,1))$statistic)
+ts &lt;- c(.5,1,2,2.5)
+sim_t &lt;- c()
+for(i in ts){
+  sim_t &lt;- c(sim_t,length(t_dist[t_dist &gt;= i])/10000)
+}
+  
+sim_t-(1-pt(ts,9))</code></pre>
+<pre><code>## [1] -0.0065356499  0.0008818019 -0.0016764119 -0.0002309138</code></pre>
+</div>
+<div id="correlation" class="section level3">
+<h3>Correlation</h3>
+<pre class="r"><code>null &lt;- replicate(10000,cor(rnorm(10,0,1),rnorm(10,0,1)))
+sorted_null &lt;- sort(abs(null))
+sorted_null[9500]</code></pre>
+<pre><code>## [1] 0.6469677</code></pre>
+<pre class="r"><code>null &lt;- replicate(10000,cor(rnorm(100,0,1),rnorm(100,0,1)))
+sorted_null &lt;- sort(abs(null))
+sorted_null[9500]</code></pre>
+<pre><code>## [1] 0.1966584</code></pre>
 </div>
 
 
