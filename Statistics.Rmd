@@ -18,6 +18,12 @@ knitr::opts_chunk$set(message=FALSE,warning=FALSE, cache=TRUE)
 
 ```{r}
 Stat<-rnorm(100,0,1)
+hist(Stat)
+# More normal
+hist(rnorm(1000000,0,1))
+
+#get sample mean
+mean(Stat)
 ```
 2) Get the mean differences
 ```{r}
