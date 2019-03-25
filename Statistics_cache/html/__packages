@@ -1,1 +1,6 @@
 base
+data.table
+dplyr
+ggplot2
+bit
+bit64
