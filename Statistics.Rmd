@@ -66,7 +66,18 @@ Using the simulated t-distribution, find the probability of t(9) >= .5, 1, 1.5, 
 Compare the two sets of probabilities to show that the difference is small. What happens to the difference if the simulation is repeated fewer times (e.g., 100) vs. more times (e.g., 100,000)
 ```{r}
 t_dist <- replicate(10000,t.test(rnorm(10,0,1))$statistic)
-ts <- c(.5,1,2,2.5)
+
+hist(t_dist)
+
+length(t_dist[t_dist<.5])/10000
+length(t_dist[t_dist<1])/10000
+length(t_dist[t_dist<1.5])/10000
+length(t_dist[t_dist<2])/10000
+length(t_dist[t_dist<2.5])/10000
+
+
+#With a loop
+ts <- c(.5,1,1.5,2,2.5)
 sim_t <- c()
 for(i in ts){
   sim_t <- c(sim_t,length(t_dist[t_dist >= i])/10000)
