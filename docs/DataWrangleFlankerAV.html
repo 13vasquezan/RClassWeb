@@ -768,6 +768,22 @@ knitr::kable(congruency_means)</code></pre>
 <li>Compute the flanker effect for each subject, taking the difference between their mean incongruent and congruent RT. Then plot the mean flanker effect, along with the SEM of the mean flanker effect</li>
 </ol>
 <p>**<a href="tip:**" class="uri">tip:**</a> Not all problems have an easy solution in dplyr, this is one them. You may have an easier time using logical indexing of the dataframe to solve this part.</p>
+<pre class="r"><code>library(ggplot2)
+flanker_means &lt;- subject_meanRTs[subject_meanRTs$congruency==&quot;I&quot;,]$mean_RT - 
+  subject_meanRTs[subject_meanRTs$congruency==&quot;C&quot;,]$mean_RT
+flanker_df &lt;- data.frame(dv = &quot;flanker effect&quot;,
+                         flanker_mean = mean(flanker_means),
+                         SEM = sd(flanker_means)/sqrt(length(flanker_means)))
+ggplot(flanker_df, aes(x=dv, y=flanker_mean))+
+  geom_bar(stat=&quot;identity&quot;)+
+  theme_classic(base_size=12)+
+  ylab(&quot;Mean Flanker Effect&quot;)+
+  geom_errorbar(aes(ymin=flanker_mean-SEM,
+                    ymax=flanker_mean+SEM),
+                position=position_dodge(width=0.9),
+                width=.2,
+                color=&quot;black&quot;)</code></pre>
+<p><img src="DataWrangleFlankerAV_files/figure-html/unnamed-chunk-8-1.png" width="672" /></p>
 </div>
 <div id="exploratory-analysis" class="section level3">
 <h3>Exploratory analysis</h3>
@@ -782,6 +798,70 @@ knitr::kable(congruency_means)</code></pre>
 <li>trial n incongruent : trial n-1 incongruent</li>
 </ol>
 <p>**<a href="tip:**" class="uri">tip:**</a> be careful, note that the first trial in each experiment can not be included, because it had no preceding trial</p>
+<pre class="r"><code>library(dplyr)
+previous_congruency &lt;- c(0,all_data$congruency[1:(length(all_data$congruency)-1)])
+sequence_subjects &lt;- all_data %&gt;%
+                      mutate(n1_congruency = previous_congruency) %&gt;%
+                      filter(trial &gt; 1,
+                             RT &lt; 2000,
+                             accuracy == TRUE) %&gt;%
+                      group_by(subject,congruency,n1_congruency) %&gt;%
+                      summarise(meanRT = mean(RT))
+sequence_means &lt;- sequence_subjects %&gt;%
+                    group_by(congruency,n1_congruency) %&gt;%
+                    summarise(mean_RT = mean(meanRT),
+                              SEM = sd(meanRT)/sqrt(length(meanRT)))
+                      
+knitr::kable(sequence_means)</code></pre>
+<table>
+<thead>
+<tr class="header">
+<th align="left">congruency</th>
+<th align="left">n1_congruency</th>
+<th align="right">mean_RT</th>
+<th align="right">SEM</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">C</td>
+<td align="left">C</td>
+<td align="right">714.0920</td>
+<td align="right">29.62445</td>
+</tr>
+<tr class="even">
+<td align="left">C</td>
+<td align="left">I</td>
+<td align="right">753.3938</td>
+<td align="right">30.77720</td>
+</tr>
+<tr class="odd">
+<td align="left">I</td>
+<td align="left">C</td>
+<td align="right">795.7701</td>
+<td align="right">33.81697</td>
+</tr>
+<tr class="even">
+<td align="left">I</td>
+<td align="left">I</td>
+<td align="right">748.9581</td>
+<td align="right">32.50715</td>
+</tr>
+</tbody>
+</table>
+<pre class="r"><code>ggplot(sequence_means, aes(x=n1_congruency, y=mean_RT,
+                           group=congruency,
+                           fill=congruency))+
+  geom_bar(stat=&quot;identity&quot;, position=&quot;dodge&quot;)+
+  theme_classic(base_size=12)+
+  ylab(&quot;Mean RT (ms&quot;)+
+  geom_errorbar(aes(ymin=mean_RT-SEM,
+                    ymax=mean_RT+SEM),
+                position=position_dodge(width=0.9),
+                width=.2,
+                color=&quot;black&quot;)+
+  coord_cartesian(ylim=c(600,900))</code></pre>
+<p><img src="DataWrangleFlankerAV_files/figure-html/unnamed-chunk-9-1.png" width="672" /></p>
 </div>
 </div>
 
