@@ -147,7 +147,21 @@ ggplot(congruency_means, aes(x=congruency,y=meanRT,
 **tip:** Not all problems have an easy solution in dplyr, this is one them. You may have an easier time using logical indexing of the dataframe to solve this part.
 
 ```{r}
-
+library(ggplot2)
+flanker_means <- subject_meanRTs[subject_meanRTs$congruency=="I",]$mean_RT - 
+  subject_meanRTs[subject_meanRTs$congruency=="C",]$mean_RT
+flanker_df <- data.frame(dv = "flanker effect",
+                         flanker_mean = mean(flanker_means),
+                         SEM = sd(flanker_means)/sqrt(length(flanker_means)))
+ggplot(flanker_df, aes(x=dv, y=flanker_mean))+
+  geom_bar(stat="identity")+
+  theme_classic(base_size=12)+
+  ylab("Mean Flanker Effect")+
+  geom_errorbar(aes(ymin=flanker_mean-SEM,
+                    ymax=flanker_mean+SEM),
+                position=position_dodge(width=0.9),
+                width=.2,
+                color="black")
   
 ```
 
@@ -170,7 +184,33 @@ First get teh subject means for each condition, then create a table and plot for
 **tip:** be careful, note that the first trial in each experiment can not be included, because it had no preceding trial
 
 ```{r}
-
+library(dplyr)
+previous_congruency <- c(0,all_data$congruency[1:(length(all_data$congruency)-1)])
+sequence_subjects <- all_data %>%
+                      mutate(n1_congruency = previous_congruency) %>%
+                      filter(trial > 1,
+                             RT < 2000,
+                             accuracy == TRUE) %>%
+                      group_by(subject,congruency,n1_congruency) %>%
+                      summarise(meanRT = mean(RT))
+sequence_means <- sequence_subjects %>%
+                    group_by(congruency,n1_congruency) %>%
+                    summarise(mean_RT = mean(meanRT),
+                              SEM = sd(meanRT)/sqrt(length(meanRT)))
+                      
+knitr::kable(sequence_means)
+ggplot(sequence_means, aes(x=n1_congruency, y=mean_RT,
+                           group=congruency,
+                           fill=congruency))+
+  geom_bar(stat="identity", position="dodge")+
+  theme_classic(base_size=12)+
+  ylab("Mean RT (ms")+
+  geom_errorbar(aes(ymin=mean_RT-SEM,
+                    ymax=mean_RT+SEM),
+                position=position_dodge(width=0.9),
+                width=.2,
+                color="black")+
+  coord_cartesian(ylim=c(600,900))
 
 ```
 
