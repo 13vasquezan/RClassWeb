@@ -8,26 +8,27 @@
 #
 
 library(shiny)
+library(dplyr)
 
 # Define UI for application that draws a histogram
 ui <- fluidPage(
    
    # Application title
-   titlePanel("Old Faithful Geyser Data"),
+   titlePanel("Star Wars data"),
    
    # Sidebar with a slider input for number of bins 
    sidebarLayout(
       sidebarPanel(
-         sliderInput("bins",
-                     "Number of bins:",
-                     min = 1,
-                     max = 50,
-                     value = 30)
+        selectInput("select",
+                    label=h3("Select box"),
+                    choices=unique(starwars$species),
+                    selected+1),
+         sliderInput("height_range")
       ),
       
       # Show a plot of the generated distribution
       mainPanel(
-         plotOutput("distPlot")
+         tableOutput("sw")
       )
    )
 )
@@ -35,14 +36,13 @@ ui <- fluidPage(
 # Define server logic required to draw a histogram
 server <- function(input, output) {
    
-   output$distPlot <- renderPlot({
-      # generate bins based on input$bins from ui.R
-      x    <- faithful[, 2] 
-      bins <- seq(min(x), max(x), length.out = input$bins + 1)
-      
-      # draw the histogram with the specified number of bins
-      hist(x, breaks = bins, col = 'darkgray', border = 'white')
+   output$sw-rendertable({
+     starwars[, 1:10]%>%
+       filter(height>-input$height_range[1],
+              height<-input$height_range[2],
+              species)
    })
+  
 }
 
 # Run the application 
