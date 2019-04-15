@@ -19,16 +19,24 @@ ui <- fluidPage(
    # Sidebar with a slider input for number of bins 
    sidebarLayout(
       sidebarPanel(
-        selectInput("select",
+        selectInput("select_species",
                     label=h3("Select box"),
                     choices=unique(starwars$species),
-                    selected+1),
-         sliderInput("height_range")
+                    multiple= TRUE,
+                    selected=1),
+        
+         sliderInput("height_range",
+                     label = h3("Pick height range"),
+                     min = min(starwars$height,
+                              na.rm=TRUE),
+                    max = max(starwars$height,
+                             na.rm=TRUE),
+                    value = c(100, 150))
       ),
       
       # Show a plot of the generated distribution
       mainPanel(
-         tableOutput("sw")
+         dataTableOutput("sw")
       )
    )
 )
@@ -36,11 +44,11 @@ ui <- fluidPage(
 # Define server logic required to draw a histogram
 server <- function(input, output) {
    
-   output$sw-rendertable({
-     starwars[, 1:10]%>%
+   output$sw-renderdatatable({
+     starwars[,1:10]%>%
        filter(height>-input$height_range[1],
               height<-input$height_range[2],
-              species)
+              species %in% input$select_species--TRUE)
    })
   
 }
