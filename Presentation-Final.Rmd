@@ -18,6 +18,12 @@ background-image: url(https://upload.wikimedia.org/wikipedia/commons/b/be/Sharin
 options(htmltools.dir.version = FALSE)
 ```
  when you add --- that makes a new page when you do - that makes bullet point  echo false make the code not show on figure
+ 
+ kniter:: include graphics(look for picture and itll be on slides)
+ 
+ pull-left[] or pull right to make columns
+ 
+ use -- for adding things incrementally
 ???
 
 Image credit: [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Sharingan_triple.svg)
