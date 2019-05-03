@@ -1,8 +1,8 @@
 ---
 title: "Presentation in R Markdown"
-subtitle: "⚔<br/>with xaringan"
+subtitle: "forcats package"
 author: "Angelina Vasquez"
-date: "2016/12/12 (updated: `r Sys.Date()`)"
+date: "2019/5/15 (updated: `r Sys.Date()`)"
 output:
   xaringan::moon_reader:
     lib_dir: libs
@@ -12,7 +12,7 @@ output:
       countIncrementalSlides: false
 ---
 
-background-image: url(https://upload.wikimedia.org/wikipedia/commons/b/be/Sharingan_triple.svg)
+
 
 ```{r setup, include=FALSE}
 options(htmltools.dir.version = FALSE)
@@ -28,25 +28,30 @@ options(htmltools.dir.version = FALSE)
  use -- for adding things incrementally
 ???
 
-Image credit: [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Sharingan_triple.svg)
+
 
 ---
 class: center, middle
 
-# xaringan
+# Forcats Package
 
-### /ʃaː.'riŋ.ɡan/
+-This package is used when you want to do things with categorical data
+
+-i.e. different levels or conditions  of an experiment
 
 ---
 class: inverse, center, middle
 
 # Get Started
 
+-You will first need to install the package forcats
+
+-This will also download indicies that will be used under the forcats umbrella
 ---
 
 # Hello World
 
-Install the **xaringan** package from [Github](https://github.com/yihui/xaringan):
+Install the **forcats** package from [Github](https://github.com/yihui/xaringan):
 
 ```{r eval=FALSE, tidy=FALSE}
 devtools::install_github("yihui/xaringan")
