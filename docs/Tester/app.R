@@ -44,7 +44,7 @@ ui <- fluidPage(
 # Define server logic required to draw a histogram
 server <- function(input, output) {
    
-   output$sw-renderdatatable({
+   output$sw<-renderDataTable({
      starwars[,1:10]%>%
        filter(height>-input$height_range[1],
               height<-input$height_range[2],
