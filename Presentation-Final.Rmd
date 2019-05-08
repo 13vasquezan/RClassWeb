@@ -146,11 +146,18 @@ class: inverse, center, middle
 
 -Heres some examples
 
-```{r}
+```{r echo=FALSE}
+
 library(forcats)
 library(dplyr)
 library(ggplot2)
 
+```
+---
+class: inverse, center, middle
+
+# Using fct_lump()
+```{r}
 starwars %>%
   filter(!is.na(species)) %>%
   mutate(species = fct_lump(species, n = 3)) %>%
@@ -160,7 +167,7 @@ starwars %>%
 ---
 class: inverse, center, middle
 
-# Another Example
+# Using fct_infrequ()
 
 ```{r}
 starwars %>%

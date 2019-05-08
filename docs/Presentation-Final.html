@@ -132,91 +132,75 @@ class: inverse, center, middle
 
 --
 
+-Collapsing the values of a factor into and "other" category
+
+--
+
+-Use fct_lump()
+
 
 ---
+class: inverse, center, middle
 
-# remark.js
+# Why do we care?
 
-You can see an introduction of remark.js from [its homepage](https://remarkjs.com). You should read the [remark.js Wiki](https://github.com/gnab/remark/wiki) at least once to know how to
+-Heres some examples
 
-- create a new slide (Markdown syntax&lt;sup&gt;*&lt;/sup&gt; and slide properties);
 
-- format a slide (e.g. text alignment);
-
-- configure the slideshow;
-
-- and use the presentation (keyboard shortcuts).
-
-It is important to be familiar with remark.js before you can understand the options in **xaringan**.
-
-.footnote[[*] It is different with Pandoc's Markdown! It is limited but should be enough for presentation purposes. Come on... You do not need a slide for the Table of Contents! Well, the Markdown support in remark.js [may be improved](https://github.com/gnab/remark/issues/142) in the future.]
-
----
-background-image: url(https://github.com/yihui/xaringan/releases/download/v0.0.2/karl-moustache.jpg)
-background-size: cover
-class: center, bottom, inverse
-
-# I was so happy to have discovered remark.js!
-
----
-class: inverse, middle, center
-
-# Using xaringan
-
----
-
-# xaringan
-
-Provides an R Markdown output format `xaringan::moon_reader` as a wrapper for remark.js, and you can use it in the YAML metadata, e.g.
-
-```yaml
----
-title: "A Cool Presentation"
-output:
-  xaringan::moon_reader:
-    yolo: true
-    nature:
-      autoplay: 30000
----
+```
+## 
+## Attaching package: 'dplyr'
 ```
 
-See the help page `?xaringan::moon_reader` for all possible options that you can use.
+```
+## The following objects are masked from 'package:stats':
+## 
+##     filter, lag
+```
+
+```
+## The following objects are masked from 'package:base':
+## 
+##     intersect, setdiff, setequal, union
+```
+---
+class: inverse, center, middle
+
+# Using fct_lump()
+
+```r
+starwars %&gt;%
+  filter(!is.na(species)) %&gt;%
+  mutate(species = fct_lump(species, n = 3)) %&gt;%
+  count(species)
+```
+
+```
+## # A tibble: 4 x 2
+##   species     n
+##   &lt;fct&gt;   &lt;int&gt;
+## 1 Droid       5
+## 2 Gungan      3
+## 3 Human      35
+## 4 Other      39
+```
 
 ---
+class: inverse, center, middle
 
-# remark.js vs xaringan
+# Using fct_infrequ()
 
-Some differences between using remark.js (left) and using **xaringan** (right):
 
-.pull-left[
-1. Start with a boilerplate HTML file;
+```r
+starwars %&gt;%
+  mutate(eye_color = fct_infreq(eye_color)) %&gt;%
+  ggplot(aes(x = eye_color)) + 
+  geom_bar() + 
+  coord_flip()
+```
 
-1. Plain Markdown;
+![](Presentation-Final_files/figure-html/unnamed-chunk-5-1.png)&lt;!-- --&gt;
 
-1. Write JavaScript to autoplay slides;
-
-1. Manually configure MathJax;
-
-1. Highlight code with `*`;
-
-1. Edit Markdown source and refresh browser to see updated slides;
-]
-
-.pull-right[
-1. Start with an R Markdown document;
-
-1. R Markdown (can embed R/other code chunks);
-
-1. Provide an option `autoplay`;
-
-1. MathJax just works;&lt;sup&gt;*&lt;/sup&gt;
-
-1. Highlight code with `{{}}`;
-
-1. The RStudio addin "Infinite Moon Reader" automatically refreshes slides on changes;
-]
-
-.footnote[[*] Not really. See next page.]
 
 ---
 
