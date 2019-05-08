@@ -42,19 +42,27 @@ class: center, middle
 ---
 class: inverse, center, middle
 
-# Get Started
+# Why I chose this Package
+
+```{r echo=FALSE}
+knitr::include_graphics("/Users/Lina/Desktop/RClassWeb/CuteCat.jpg")
+
+
+```
+
 
 -You will first need to install the package forcats
 
--This will also download indicies that will be used under the forcats umbrella
+-This 
 ---
 
-# Hello World
+# How To Install
 
-Install the **forcats** package from [Github](https://github.com/yihui/xaringan):
+Install the **forcats** package from [Github](https://github.com/tidyverse/forcats):
 
 ```{r eval=FALSE, tidy=FALSE}
-devtools::install_github("yihui/xaringan")
+devtools::install_github("tidyverse/forcats")
+
 ```
 
 --
