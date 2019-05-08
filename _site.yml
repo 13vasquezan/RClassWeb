@@ -16,6 +16,8 @@ navbar:
       href: DataWrangleFlankerAV.html
     - text: "Statistics"
       href: Statistics.html
+    - text: "ForCatsPackageTutorial"
+      href: ForCatsPackageTutorial.html
     - text: "Links"
       href: Links.html
 output_dir: "docs"
