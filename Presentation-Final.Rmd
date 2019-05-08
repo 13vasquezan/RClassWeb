@@ -45,7 +45,6 @@ class: inverse, center, middle
 
 # Why I chose this Package
 
--Cats is in the name
 ```{r echo=FALSE}
 
 knitr::include_graphics("images/CuteCat.jpg")
@@ -53,6 +52,8 @@ knitr::include_graphics("images/CuteCat.jpg")
 ```
 
 ---
+
+class: inverse, center, middle
 
 # Getting Started
 
@@ -65,23 +66,16 @@ devtools::install_github("tidyverse/forcats")
 
 --
 
-You are recommended to use the [RStudio IDE](https://www.rstudio.com/products/rstudio/), but you do not have to.
-
-- Create a new R Markdown document from the menu `File -> New File -> R Markdown -> From Template -> Ninja Presentation`;<sup>1</sup>
+-Forcats is part of Tidyverse
 
 --
 
-- Click the `Knit` button to compile it;
+-You can install the package tidyverse which will also install forcats
 
 --
 
-- or use the [RStudio Addin](https://rstudio.github.io/rstudioaddins/)<sup>2</sup> "Infinite Moon Reader" to live preview the slides (every time you update and save the Rmd document, the slides will be automatically reloaded in RStudio Viewer.
+-or you can use devtools to get straight to forcats
 
-.footnote[
-[1] 中文用户请看[这份教程](http://slides.yihui.name/xaringan/zh-CN.html)
-
-[2] See [#2](https://github.com/yihui/xaringan/issues/2) if you do not see the template or addin in RStudio.
-]
 
 ---
 background-image: url(`r xaringan:::karl`)
@@ -91,8 +85,22 @@ class: center, bottom, inverse
 # You only live once!
 
 ---
+class: inverse, center, middle
 
-# Hello Ninja
+# You Have it Installed, Now What?
+
+-Do you have categorical data?
+
+--
+
+-Do you want to do something with that categorical data?
+
+--
+
+-Use forcats and it's dependicies to do that thing with categorical data
+
+
+---
 
 As a presentation ninja, you certainly should not be satisfied by the "Hello World" example. You need to understand more about two things:
 
