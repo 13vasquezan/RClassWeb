@@ -38,6 +38,8 @@ class: inverse, center, middle
 
 -This package is used when you want to do things with categorical data
 
+--
+
 -i.e. different levels or conditions  of an experiment
 
 ---
@@ -102,6 +104,35 @@ class: inverse, center, middle
 
 ---
 
+class: inverse, center, middle
+
+# What you Can do With Forcats
+
+-Reordering a factor with a variable 
+
+--
+
+-Use fct_reorder()
+
+--
+
+-Reordering a factor by frequency
+
+--
+
+-Use fct_infreq()
+
+--
+
+-Changing the order of the factors by hand
+
+--
+
+-Use fct_relevel()
+
+--
+
+-
 As a presentation ninja, you certainly should not be satisfied by the "Hello World" example. You need to understand more about two things:
 
 1. The [remark.js](https://remarkjs.com) library;
