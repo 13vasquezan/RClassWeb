@@ -1,6 +1,6 @@
 ---
 title: "Presentation in R Markdown"
-subtitle: "forcats package"
+subtitle: "Forcats package"
 author: "Angelina Vasquez"
 date: "2019/5/15 (updated: `r Sys.Date()`)"
 output:
@@ -16,12 +16,13 @@ output:
 
 ```{r setup, include=FALSE}
 options(htmltools.dir.version = FALSE)
+
 ```
  when you add --- that makes a new page when you do - that makes bullet point  echo false make the code not show on figure
  
  p h1 h2 div will have you edit the size shape of words in html code add it to css file
  
- kniter:: include graphics(look for picture and itll be on slides)
+ kniter:: include graphics(look for picture and itll be on slides) make sure it is in images before you put it in there
  
  pull-left[] or pull right to make columns
  
@@ -31,7 +32,7 @@ options(htmltools.dir.version = FALSE)
 
 
 ---
-class: center, middle
+class: inverse, center, middle
 
 # Forcats Package
 
@@ -44,20 +45,16 @@ class: inverse, center, middle
 
 # Why I chose this Package
 
-
+-Cats is in the name
 ```{r echo=FALSE}
 
-knitr::include_graphics("/Users/Lina/Desktop/RClassWeb/CuteCat.jpg")
+knitr::include_graphics("images/CuteCat.jpg")
 
 ```
 
-
--You will first need to install the package forcats
-
--This 
 ---
 
-# How To Install
+# Getting Started
 
 Install the **forcats** package from [Github](https://github.com/tidyverse/forcats):
 
