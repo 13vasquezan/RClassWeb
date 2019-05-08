@@ -44,9 +44,10 @@ class: inverse, center, middle
 
 # Why I chose this Package
 
-```{r echo=FALSE}
-knitr::include_graphics("/Users/Lina/Desktop/RClassWeb/CuteCat.jpg")
 
+```{r echo=FALSE}
+
+knitr::include_graphics("/Users/Lina/Desktop/RClassWeb/CuteCat.jpg")
 
 ```
 
