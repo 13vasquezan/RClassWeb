@@ -19,6 +19,12 @@ output: html_document
 
 # **Angelina's Lab Journal**
 
+##Who I Am
+
+I am a 1st year graduate student pursuing my Master's in Experimental Psychology
+
+My overall research interests include memory distortion. However, I am also interested in true verses false memory, stereotypes, and how we use information to fill in gaps in our memory.
+
 This is a web journal to show the coding work and progressin the R class
 
 
