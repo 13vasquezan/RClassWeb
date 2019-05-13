@@ -35,8 +35,46 @@ Or enter the r code listed below
 
 ```{r, eval=FALSE}
 devtools::install_github("tidyverse/forcats")
+install.packages("forcats")
 library(forcats)
 ```
+## The Different Functions of Forcats
+
+###1. Recoding a Factor
+
+If you have categorical variables/factors, you can change the name or identity of that factor.
+
+Use the fct_recode() 
+```{r}
+#Using data in r (airquality)
+library(dplyr)
+library(forcats)
+
+# Take a look at the data
+glimpse(airquality)
+
+# The column month is listed as an integer so lets change it to a factor
+airquality$Month <- factor(airquality$Month)
+
+levels(airquality$Month)
+
+# Now we can recode the factors into the categorical names of the months
+
+airquality$Month <- fct_recode(airquality$Month, May = '5', June = '6', July = '7', Aug = '8', Sept = '9')
+
+glimpse(airquality$Month)
+```
+###2. Reversing the order of the Factors
+
+If you have categorical variables/factors in one order you can reverse that order.
+
+Use fct_rev
+```{r}
+
+```
+
+
+
 
 [link to factors reference](https://r4ds.had.co.nz/factors.html)
 https://rpubs.com/tictacjoe/forcats_tutorial
