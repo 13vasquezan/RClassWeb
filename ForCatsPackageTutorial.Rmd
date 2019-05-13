@@ -25,13 +25,16 @@ Although this information is useful, it might be hard to work with. Using a pack
 
 ###Packages to Work with Categorical Data
 
+Forcats is a package under the Tidyverse universe. However, it is not one of the main packages so you would need to install forcats from tidyverse
 
-Forcats is a package under the Tidyverse universe.
+You can install the package a few different way. 
 
--This type of package is relevant for categorical data. Such as 
-First you need to install the package into your rstudio account
+Install the **forcats** package from [Github](https://github.com/tidyverse/forcats):
 
-```{r}
+Or enter the r code listed below 
+
+```{r, eval=FALSE}
+devtools::install_github("tidyverse/forcats")
 library(forcats)
 ```
 

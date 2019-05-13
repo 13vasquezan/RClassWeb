@@ -417,10 +417,61 @@ div.tocify {
 </div>
 
 
-<div id="forcats-package" class="section level2">
-<h2>Forcats Package</h2>
-<p>First you need to install the package into your rstudio account</p>
+<div id="dealing-with-catergorical-data" class="section level2">
+<h2>Dealing with Catergorical Data</h2>
+<p>Categoical variables deal with qualitative data and have have an infinite number or values vereses quantitative data that is on a continuious scale.</p>
+<p>(i.e. hair color, location, ethncity)</p>
+<p>Although this information is useful, it might be hard to work with. Using a package to organize and manipulate categorical data can help.</p>
+<div id="packages-to-work-with-categorical-data" class="section level3">
+<h3>Packages to Work with Categorical Data</h3>
+<p>Forcats is a package under the Tidyverse universe. However, it is not one of the main packages so you would need to install forcats from tidyverse</p>
+<p>You can install the package a few different way.</p>
+<p>Install the <strong>forcats</strong> package from <a href="https://github.com/tidyverse/forcats">Github</a>:</p>
+<p>Or enter the r code listed below</p>
+<pre class="r"><code>devtools::install_github(&quot;tidyverse/forcats&quot;)</code></pre>
+<pre><code>## assertthat (0.2.0 -&gt; 0.2.1) [CRAN]
+## backports  (1.1.3 -&gt; 1.1.4) [CRAN]
+## cli        (1.0.1 -&gt; 1.1.0) [CRAN]
+## glue       (1.3.0 -&gt; 1.3.1) [CRAN]
+## pillar     (1.3.1 -&gt; 1.4.0) [CRAN]
+## rlang      (0.3.1 -&gt; 0.3.4) [CRAN]
+## tibble     (2.0.1 -&gt; 2.1.1) [CRAN]
+## vctrs      (NA    -&gt; 0.1.0) [CRAN]
+## zeallot    (NA    -&gt; 0.1.0) [CRAN]
+## 
+## The downloaded binary packages are in
+##  /var/folders/kl/hl2l3vg132j9vrcqxs45jk280000gp/T//RtmpvcPM0K/downloaded_packages
+##   
+   checking for file ‘/private/var/folders/kl/hl2l3vg132j9vrcqxs45jk280000gp/T/RtmpvcPM0K/remotes47fedfd7e1c/tidyverse-forcats-60fb82b/DESCRIPTION’ ...
+  
+✔  checking for file ‘/private/var/folders/kl/hl2l3vg132j9vrcqxs45jk280000gp/T/RtmpvcPM0K/remotes47fedfd7e1c/tidyverse-forcats-60fb82b/DESCRIPTION’ (461ms)
+## 
+  
+─  preparing ‘forcats’: (778ms)
+## 
+  
+   checking DESCRIPTION meta-information ...
+  
+✔  checking DESCRIPTION meta-information
+## 
+  
+─  checking for LF line-endings in source and make files and shell scripts
+## 
+  
+─  checking for empty or unneeded directories
+## 
+  
+─  looking to see if a ‘data/datalist’ file should be added
+## 
+  
+─  building ‘forcats_0.4.0.9000.tar.gz’
+## 
+  
+   
+## </code></pre>
 <pre class="r"><code>library(forcats)</code></pre>
+<p><a href="https://r4ds.had.co.nz/factors.html">link to factors reference</a> <a href="https://rpubs.com/tictacjoe/forcats_tutorial" class="uri">https://rpubs.com/tictacjoe/forcats_tutorial</a> <a href="https://forcats.tidyverse.org/articles/forcats.html" class="uri">https://forcats.tidyverse.org/articles/forcats.html</a></p>
+</div>
 </div>
 
 
