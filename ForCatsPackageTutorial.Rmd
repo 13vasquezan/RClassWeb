@@ -68,11 +68,33 @@ glimpse(airquality$Month)
 
 If you have categorical variables/factors in one order you can reverse that order.
 
-Use fct_rev
+Use fct_rev()
 ```{r}
+library(ggplot2)
+ggplot(airquality, aes(fct_rev(Month), Temp)) +
+  geom_boxplot(aes(fill = Month)) +
+  labs(x = "Month") +
+  ggtitle(label = "Plot with The X-axis Reversed")
+```
+###3. Releveling a Factor
+
+This allows you to change the location or level of your factor
+```{r}
+airquality$Month <- fct_relevel(airquality$Month, 'Sept', 'July', 'May', 'Aug', 'June')
+
+levels(airquality$Month)
+
+ggplot(airquality, aes(Month, Temp)) +
+  geom_boxplot(aes(fill = Month)) +
+  ggtitle(label = "Notice how the order of the level 'Month' has changed")
+```
+###Factor Reorder
+```{r}
+library(forcats)
+library(dplyr)
+glimpse(starwars)
 
 ```
-
 
 
 
