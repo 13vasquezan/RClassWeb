@@ -13,12 +13,28 @@ output:
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(message=FALSE,warning=FALSE, cache=TRUE)
 ```
-## Forcats Package
 
+
+## Dealing with Catergorical Data
+
+Categoical variables deal with qualitative data and have have an infinite number or values vereses quantitative data that is on a continuious scale. 
+
+(i.e. hair color, location, ethncity)
+
+Although this information is useful, it might be hard to work with. Using a package to organize and manipulate categorical data can help.
+
+###Packages to Work with Categorical Data
+
+
+Forcats is a package under the Tidyverse universe.
+
+-This type of package is relevant for categorical data. Such as 
 First you need to install the package into your rstudio account
 
 ```{r}
 library(forcats)
 ```
 
-
+[link to factors reference](https://r4ds.had.co.nz/factors.html)
+https://rpubs.com/tictacjoe/forcats_tutorial
+https://forcats.tidyverse.org/articles/forcats.html
