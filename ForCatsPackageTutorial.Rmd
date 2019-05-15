@@ -120,7 +120,27 @@ ggplot(airquality, aes(Month, Temp)) +
 ```
 
 
-###4.Factor Reorder
+
+###4.Combining Levels of a Factor
+
+If you have too many levels of a factor, you can combine some of them to an "other" category and choose to display only a certain number of the levels you want.
+
+Use **fct_lump()**
+
+```{r}
+library(dplyr)
+starwars %>%
+  mutate(skin_color = fct_lump(skin_color, n = 5)) %>%
+  count(skin_color, sort = TRUE)
+```
+
+### Randomly Reordering a Factor
+
+If you don't want the order your factors are in but don't know what order you want, you can randomly choose the order of your factors.
+
+
+Use **fct_shuffle()**
+###6.Reordering a Factor
 
 Lastly, you can reorder your factors by using another variable.
 
