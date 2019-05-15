@@ -17,17 +17,16 @@ knitr::opts_chunk$set(message=FALSE,warning=FALSE, cache=TRUE)
 
 ## Dealing with Catergorical Data
 
-Categoical variables deal with qualitative data and have have an infinite number or values vereses quantitative data that is on a continuious scale. 
+Categoical variables deal with qualitative data and have have an infinite number or values (i.e. hair color, location, ethnicity) vereses quantitative data that is on a continuious scale (i.e. 2,3,4). 
 
-(i.e. hair color, location, ethncity)
 
-Although this information is useful, it might be hard to work with. Using a package to organize and manipulate categorical data can help.
+Although this categorical information is useful, it might be hard to work with. Using a package to organize and manipulate categorical data can help.
 
 ###Packages to Work with Categorical Data
 
-Forcats is a package under the Tidyverse universe. However, it is not one of the main packages so you would need to install forcats from tidyverse
+Forcats is a package under the Tidyverse universe. However, it is not one of the main packages, so you would need to install forcats from tidyverse
 
-You can install the package a few different way. 
+You can install the package a few different ways. 
 
 Install the **forcats** package from [Github](https://github.com/tidyverse/forcats):
 
@@ -38,9 +37,10 @@ devtools::install_github("tidyverse/forcats")
 install.packages("forcats")
 library(forcats)
 ```
+
 ## The Different Functions of Forcats
 
-It is important to note a few things before using the Forcats package. First, this package works with categorical data in the form of factors. You can check what type of class your variable is with the function class(). To use forcats, you should change your variable to a factor with the function as.factor(). 
+It is important to note a few things before using the Forcats package. First, this package works with categorical data in the form of factors. You can check what type of class your variable is with the function **class()**. To use Forcats, you should change your variable to a factor with the function **as.factor()** or **factor()**. 
 
 ```{r}
 a<-"hi"
@@ -53,13 +53,22 @@ class(c)
 ```
 
 
+
 Second,forcats is a package that is used to do something with you categorical data. When you enter in the specific R code to do something with that data, it will store it into the variable you selected. However, it may be difficult for you to see that what you did with Forcats actually happened. It is usful to also install the package **dplyr** and **ggplot2** to your R studio so you can visualize what you have done with your data
+```{r}
+install.packages("dplyr")
+install.packages("ggplot2")
+library(dplyr)
+library(ggplot2)
+```
+
+
 
 ###1. Recoding a Factor
 
 If you have categorical variables/factors, you can change the name or identity of that factor.
 
-Use the fct_recode() 
+Use the **fct_recode()**
 ```{r}
 #Using data in r (airquality)
 library(dplyr)
@@ -79,11 +88,13 @@ airquality$Month <- fct_recode(airquality$Month, May = '5', June = '6', July = '
 
 glimpse(airquality$Month)
 ```
+
+
 ###2. Reversing the order of the Factors
 
 If you have categorical variables/factors in one order you can reverse that order.
 
-Use fct_rev()
+Use **fct_rev()**
 ```{r}
 library(ggplot2)
 ggplot(airquality, aes(fct_rev(Month), Temp)) +
@@ -91,9 +102,13 @@ ggplot(airquality, aes(fct_rev(Month), Temp)) +
   labs(x = "Month") +
   ggtitle(label = "Plot with The X-axis Reversed")
 ```
+
+
 ###3. Releveling a Factor
 
-This allows you to change the location or level of your factor
+If you want to change the location or level of your factor.
+
+Use **fct_relevel()**
 ```{r}
 airquality$Month <- fct_relevel(airquality$Month, 'Sept', 'July', 'May', 'Aug', 'June')
 
@@ -103,9 +118,13 @@ ggplot(airquality, aes(Month, Temp)) +
   geom_boxplot(aes(fill = Month)) +
   ggtitle(label = "Notice how the order of the level 'Month' has changed")
 ```
-###Factor Reorder
 
-This allows you to reorder your factors by using another variable.
+
+###4.Factor Reorder
+
+Lastly, you can reorder your factors by using another variable.
+
+Use **fct_reorder()**
 ```{r}
 library(forcats)
 library(dplyr)
