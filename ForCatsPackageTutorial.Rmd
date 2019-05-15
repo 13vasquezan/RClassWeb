@@ -40,6 +40,21 @@ library(forcats)
 ```
 ## The Different Functions of Forcats
 
+It is important to note a few things before using the Forcats package. First, this package works with categorical data in the form of factors. You can check what type of class your variable is with the function class(). To use forcats, you should change your variable to a factor with the function as.factor(). 
+
+```{r}
+a<-"hi"
+class(a)
+b<-c(2,3,5)
+class(b)
+c<-as.factor(b)
+class(c)
+
+```
+
+
+Second,forcats is a package that is used to do something with you categorical data. When you enter in the specific R code to do something with that data, it will store it into the variable you selected. However, it may be difficult for you to see that what you did with Forcats actually happened. It is usful to also install the package **dplyr** and **ggplot2** to your R studio so you can visualize what you have done with your data
+
 ###1. Recoding a Factor
 
 If you have categorical variables/factors, you can change the name or identity of that factor.
@@ -89,11 +104,25 @@ ggplot(airquality, aes(Month, Temp)) +
   ggtitle(label = "Notice how the order of the level 'Month' has changed")
 ```
 ###Factor Reorder
+
+This allows you to reorder your factors by using another variable.
 ```{r}
 library(forcats)
 library(dplyr)
 glimpse(starwars)
 
+avg_mass_eye_color <- starwars %>%
+  mutate(eye_color = fct_lump(eye_color, n = 6)) %>%
+  group_by(eye_color) %>%
+  summarise(mean_mass = mean(mass, na.rm = TRUE))
+
+```
+```{r}
+library(ggplot2)
+avg_mass_eye_color %>%
+  mutate(eye_color = fct_reorder(eye_color, mean_mass)) %>%
+  ggplot(aes(x = eye_color, y = mean_mass)) + 
+  geom_col()
 ```
 
 

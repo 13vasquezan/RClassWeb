@@ -435,6 +435,17 @@ library(forcats)</code></pre>
 </div>
 <div id="the-different-functions-of-forcats" class="section level2">
 <h2>The Different Functions of Forcats</h2>
+<p>It is important to note a few things before using the Forcats package. First, this package works with categorical data in the form of factors. You can check what type of class your variable is with the function class(). To use forcats, you should change your variable to a factor with the function as.factor().</p>
+<pre class="r"><code>a&lt;-&quot;hi&quot;
+class(a)</code></pre>
+<pre><code>## [1] &quot;character&quot;</code></pre>
+<pre class="r"><code>b&lt;-c(2,3,5)
+class(b)</code></pre>
+<pre><code>## [1] &quot;numeric&quot;</code></pre>
+<pre class="r"><code>c&lt;-as.factor(b)
+class(c)</code></pre>
+<pre><code>## [1] &quot;factor&quot;</code></pre>
+<p>Second,forcats is a package that is used to do something with you categorical data. When you enter in the specific R code to do something with that data, it will store it into the variable you selected. However, it may be difficult for you to see that what you did with Forcats actually happened. It is usful to also install the package <strong>dplyr</strong> and <strong>ggplot2</strong> to your R studio so you can visualize what you have done with your data</p>
 <div id="recoding-a-factor" class="section level3">
 <h3>1. Recoding a Factor</h3>
 <p>If you have categorical variables/factors, you can change the name or identity of that factor.</p>
@@ -474,7 +485,7 @@ ggplot(airquality, aes(fct_rev(Month), Temp)) +
   geom_boxplot(aes(fill = Month)) +
   labs(x = &quot;Month&quot;) +
   ggtitle(label = &quot;Plot with The X-axis Reversed&quot;)</code></pre>
-<p><img src="ForCatsPackageTutorial_files/figure-html/unnamed-chunk-3-1.png" width="672" /> ###3. Releveling a Factor</p>
+<p><img src="ForCatsPackageTutorial_files/figure-html/unnamed-chunk-4-1.png" width="672" /> ###3. Releveling a Factor</p>
 <p>This allows you to change the location or level of your factor</p>
 <pre class="r"><code>airquality$Month &lt;- fct_relevel(airquality$Month, &#39;Sept&#39;, &#39;July&#39;, &#39;May&#39;, &#39;Aug&#39;, &#39;June&#39;)
 
@@ -483,7 +494,8 @@ levels(airquality$Month)</code></pre>
 <pre class="r"><code>ggplot(airquality, aes(Month, Temp)) +
   geom_boxplot(aes(fill = Month)) +
   ggtitle(label = &quot;Notice how the order of the level &#39;Month&#39; has changed&quot;)</code></pre>
-<p><img src="ForCatsPackageTutorial_files/figure-html/unnamed-chunk-4-1.png" width="672" /> ###Factor Reorder</p>
+<p><img src="ForCatsPackageTutorial_files/figure-html/unnamed-chunk-5-1.png" width="672" /> ###Factor Reorder</p>
+<p>This allows you to reorder your factors by using another variable.</p>
 <pre class="r"><code>library(forcats)
 library(dplyr)
 glimpse(starwars)</code></pre>
@@ -502,6 +514,16 @@ glimpse(starwars)</code></pre>
 ## $ films      &lt;list&gt; [&lt;&quot;Revenge of the Sith&quot;, &quot;Return of the Jedi&quot;, &quot;The …
 ## $ vehicles   &lt;list&gt; [&lt;&quot;Snowspeeder&quot;, &quot;Imperial Speeder Bike&quot;&gt;, &lt;&gt;, &lt;&gt;, &lt;…
 ## $ starships  &lt;list&gt; [&lt;&quot;X-wing&quot;, &quot;Imperial shuttle&quot;&gt;, &lt;&gt;, &lt;&gt;, &quot;TIE Advanc…</code></pre>
+<pre class="r"><code>avg_mass_eye_color &lt;- starwars %&gt;%
+  mutate(eye_color = fct_lump(eye_color, n = 6)) %&gt;%
+  group_by(eye_color) %&gt;%
+  summarise(mean_mass = mean(mass, na.rm = TRUE))</code></pre>
+<pre class="r"><code>library(ggplot2)
+avg_mass_eye_color %&gt;%
+  mutate(eye_color = fct_reorder(eye_color, mean_mass)) %&gt;%
+  ggplot(aes(x = eye_color, y = mean_mass)) + 
+  geom_col()</code></pre>
+<p><img src="ForCatsPackageTutorial_files/figure-html/unnamed-chunk-7-1.png" width="672" /></p>
 <p><a href="https://r4ds.had.co.nz/factors.html">link to factors reference</a> <a href="https://rpubs.com/tictacjoe/forcats_tutorial" class="uri">https://rpubs.com/tictacjoe/forcats_tutorial</a> <a href="https://forcats.tidyverse.org/articles/forcats.html" class="uri">https://forcats.tidyverse.org/articles/forcats.html</a></p>
 </div>
 </div>
