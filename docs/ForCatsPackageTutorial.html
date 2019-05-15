@@ -419,14 +419,14 @@ div.tocify {
 
 <div id="dealing-with-catergorical-data" class="section level2">
 <h2>Dealing with Catergorical Data</h2>
-<p>Categoical variables deal with qualitative data and have have an infinite number or values (i.e. hair color, location, ethnicity) vereses quantitative data that is on a continuious scale (i.e. 2,3,4).</p>
+<p>Categorical variables deal with qualitative data and have have an infinite number or values (i.e. hair color, location, ethnicity) verses quantitative data that is on a continuious scale (i.e. 2,3,4).</p>
 <p>Although this categorical information is useful, it might be hard to work with. Using a package to organize and manipulate categorical data can help.</p>
 <div id="packages-to-work-with-categorical-data" class="section level3">
 <h3>Packages to Work with Categorical Data</h3>
 <p>Forcats is a package under the Tidyverse universe. However, it is not one of the main packages, so you would need to install forcats from tidyverse</p>
 <p>You can install the package a few different ways.</p>
 <p>Install the <strong>forcats</strong> package from <a href="https://github.com/tidyverse/forcats">Github</a>:</p>
-<p>Or enter the r code listed below</p>
+<p>Or enter the R code listed below</p>
 <pre class="r"><code>devtools::install_github(&quot;tidyverse/forcats&quot;)
 install.packages(&quot;forcats&quot;)
 library(forcats)</code></pre>
@@ -444,7 +444,7 @@ class(b)</code></pre>
 <pre class="r"><code>c&lt;-as.factor(b)
 class(c)</code></pre>
 <pre><code>## [1] &quot;factor&quot;</code></pre>
-<p>Second,forcats is a package that is used to do something with you categorical data. When you enter in the specific R code to do something with that data, it will store it into the variable you selected. However, it may be difficult for you to see that what you did with Forcats actually happened. It is usful to also install the package <strong>dplyr</strong> and <strong>ggplot2</strong> to your R studio so you can visualize what you have done with your data</p>
+<p>Second,forcats is a package that is used to do something with you categorical data. When you enter in the specific R code to do something with that data, it will store it into the variable you selected. However, it may be difficult for you to see that what you did with Forcats actually happened. It is useful to also install the package <strong>dplyr</strong> and <strong>ggplot2</strong> to your R studio so you can visualize what you have done with your data</p>
 <pre class="r"><code>library(dplyr)
 library(ggplot2)</code></pre>
 <div id="recoding-a-factor" class="section level3">
@@ -572,6 +572,9 @@ avg_mass_eye_color %&gt;%
   ggplot(aes(x = eye_color, y = mean_mass)) + 
   geom_col()</code></pre>
 <p><img src="ForCatsPackageTutorial_files/figure-html/unnamed-chunk-10-1.png" width="672" /></p>
+<p>If you want to try these out for yourself, there are many different data sources that R provides for you to practice on. My favorite is the starwars data, but listed in my examples is also airquality data.</p>
+<p>Below are some links to tutorials that I used to compromise this tutorial. I hope you have found it useful and feel free to now use this link as a tutorial for working with categorical data.</p>
+<p>Happy coding!</p>
 <p><a href="https://r4ds.had.co.nz/factors.html">link to factors chapter reference</a></p>
 <p><a href="https://rpubs.com/tictacjoe/forcats_tutorial">link to explaination of factors in forcats tutorial</a></p>
 <p><a href="https://forcats.tidyverse.org/articles/forcats.html">link to basic things to do with forcats tutorial</a></p>
