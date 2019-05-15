@@ -419,13 +419,12 @@ div.tocify {
 
 <div id="dealing-with-catergorical-data" class="section level2">
 <h2>Dealing with Catergorical Data</h2>
-<p>Categoical variables deal with qualitative data and have have an infinite number or values vereses quantitative data that is on a continuious scale.</p>
-<p>(i.e. hair color, location, ethncity)</p>
-<p>Although this information is useful, it might be hard to work with. Using a package to organize and manipulate categorical data can help.</p>
+<p>Categoical variables deal with qualitative data and have have an infinite number or values (i.e. hair color, location, ethnicity) vereses quantitative data that is on a continuious scale (i.e. 2,3,4).</p>
+<p>Although this categorical information is useful, it might be hard to work with. Using a package to organize and manipulate categorical data can help.</p>
 <div id="packages-to-work-with-categorical-data" class="section level3">
 <h3>Packages to Work with Categorical Data</h3>
-<p>Forcats is a package under the Tidyverse universe. However, it is not one of the main packages so you would need to install forcats from tidyverse</p>
-<p>You can install the package a few different way.</p>
+<p>Forcats is a package under the Tidyverse universe. However, it is not one of the main packages, so you would need to install forcats from tidyverse</p>
+<p>You can install the package a few different ways.</p>
 <p>Install the <strong>forcats</strong> package from <a href="https://github.com/tidyverse/forcats">Github</a>:</p>
 <p>Or enter the r code listed below</p>
 <pre class="r"><code>devtools::install_github(&quot;tidyverse/forcats&quot;)
@@ -435,7 +434,7 @@ library(forcats)</code></pre>
 </div>
 <div id="the-different-functions-of-forcats" class="section level2">
 <h2>The Different Functions of Forcats</h2>
-<p>It is important to note a few things before using the Forcats package. First, this package works with categorical data in the form of factors. You can check what type of class your variable is with the function class(). To use forcats, you should change your variable to a factor with the function as.factor().</p>
+<p>It is important to note a few things before using the Forcats package. First, this package works with categorical data in the form of factors or characters. You can check what type of class your variable is with the function <strong>class()</strong>. To use Forcats, you should change your variable to a factor with the function <strong>as.factor()</strong> or <strong>factor()</strong> or a character with the function <strong>as.character()</strong>.</p>
 <pre class="r"><code>a&lt;-&quot;hi&quot;
 class(a)</code></pre>
 <pre><code>## [1] &quot;character&quot;</code></pre>
@@ -446,10 +445,12 @@ class(b)</code></pre>
 class(c)</code></pre>
 <pre><code>## [1] &quot;factor&quot;</code></pre>
 <p>Second,forcats is a package that is used to do something with you categorical data. When you enter in the specific R code to do something with that data, it will store it into the variable you selected. However, it may be difficult for you to see that what you did with Forcats actually happened. It is usful to also install the package <strong>dplyr</strong> and <strong>ggplot2</strong> to your R studio so you can visualize what you have done with your data</p>
+<pre class="r"><code>library(dplyr)
+library(ggplot2)</code></pre>
 <div id="recoding-a-factor" class="section level3">
 <h3>1. Recoding a Factor</h3>
 <p>If you have categorical variables/factors, you can change the name or identity of that factor.</p>
-<p>Use the fct_recode()</p>
+<p>Use the <strong>fct_recode()</strong></p>
 <pre class="r"><code>#Using data in r (airquality)
 library(dplyr)
 library(forcats)
@@ -479,24 +480,69 @@ glimpse(airquality$Month)</code></pre>
 <div id="reversing-the-order-of-the-factors" class="section level3">
 <h3>2. Reversing the order of the Factors</h3>
 <p>If you have categorical variables/factors in one order you can reverse that order.</p>
-<p>Use fct_rev()</p>
+<p>Use <strong>fct_rev()</strong></p>
 <pre class="r"><code>library(ggplot2)
+#You will reverse the original order of the factors
 ggplot(airquality, aes(fct_rev(Month), Temp)) +
   geom_boxplot(aes(fill = Month)) +
   labs(x = &quot;Month&quot;) +
   ggtitle(label = &quot;Plot with The X-axis Reversed&quot;)</code></pre>
-<p><img src="ForCatsPackageTutorial_files/figure-html/unnamed-chunk-4-1.png" width="672" /> ###3. Releveling a Factor</p>
-<p>This allows you to change the location or level of your factor</p>
-<pre class="r"><code>airquality$Month &lt;- fct_relevel(airquality$Month, &#39;Sept&#39;, &#39;July&#39;, &#39;May&#39;, &#39;Aug&#39;, &#39;June&#39;)
+<p><img src="ForCatsPackageTutorial_files/figure-html/unnamed-chunk-5-1.png" width="672" /></p>
+</div>
+<div id="releveling-a-factor" class="section level3">
+<h3>3. Releveling a Factor</h3>
+<p>If you want to change the location or level of your factor.</p>
+<p>Use <strong>fct_relevel()</strong></p>
+<pre class="r"><code>#You will see the order of the factor months has changed from the orginal order
+airquality$Month &lt;- fct_relevel(airquality$Month, &#39;Sept&#39;, &#39;July&#39;, &#39;May&#39;, &#39;Aug&#39;, &#39;June&#39;)
 
 levels(airquality$Month)</code></pre>
 <pre><code>## [1] &quot;Sept&quot; &quot;July&quot; &quot;May&quot;  &quot;Aug&quot;  &quot;June&quot;</code></pre>
 <pre class="r"><code>ggplot(airquality, aes(Month, Temp)) +
   geom_boxplot(aes(fill = Month)) +
-  ggtitle(label = &quot;Notice how the order of the level &#39;Month&#39; has changed&quot;)</code></pre>
-<p><img src="ForCatsPackageTutorial_files/figure-html/unnamed-chunk-5-1.png" width="672" /> ###Factor Reorder</p>
-<p>This allows you to reorder your factors by using another variable.</p>
-<pre class="r"><code>library(forcats)
+  ggtitle(label = &quot;Order of &#39;Month&#39; has changed&quot;)</code></pre>
+<p><img src="ForCatsPackageTutorial_files/figure-html/unnamed-chunk-6-1.png" width="672" /></p>
+</div>
+<div id="combining-levels-of-a-factor" class="section level3">
+<h3>4.Combining Levels of a Factor</h3>
+<p>If you have too many levels of a factor, you can combine some of them to an “other” category and choose to display only a certain number of the levels you want.</p>
+<p>Use <strong>fct_lump()</strong></p>
+<pre class="r"><code>library(dplyr)
+
+#You will lump the  category skin color into 5 levels and then the remaining will be in &quot;other&quot;
+starwars %&gt;%
+  mutate(skin_color = fct_lump(skin_color, n = 5)) %&gt;%
+  count(skin_color, sort = TRUE)</code></pre>
+<pre><code>## # A tibble: 6 x 2
+##   skin_color     n
+##   &lt;fct&gt;      &lt;int&gt;
+## 1 Other         41
+## 2 fair          17
+## 3 light         11
+## 4 dark           6
+## 5 green          6
+## 6 grey           6</code></pre>
+</div>
+<div id="randomly-reordering-a-factor" class="section level3">
+<h3>5.Randomly Reordering a Factor</h3>
+<p>If you don’t want the order your factors are in but don’t know what order you want, you can randomly choose the order of your factors.</p>
+<p>Use <strong>fct_shuffle()</strong></p>
+<pre class="r"><code># You will see a random order of the factor eye color
+Randomized &lt;- starwars$eye_color %&gt;%
+  fct_shuffle()
+
+levels(Randomized)</code></pre>
+<pre><code>##  [1] &quot;yellow&quot;        &quot;red&quot;           &quot;green, yellow&quot; &quot;orange&quot;       
+##  [5] &quot;white&quot;         &quot;blue&quot;          &quot;dark&quot;          &quot;hazel&quot;        
+##  [9] &quot;pink&quot;          &quot;red, blue&quot;     &quot;brown&quot;         &quot;blue-gray&quot;    
+## [13] &quot;black&quot;         &quot;gold&quot;          &quot;unknown&quot;</code></pre>
+</div>
+<div id="reordering-a-factor" class="section level3">
+<h3>6.Reordering a Factor</h3>
+<p>Lastly, you can reorder your factors by using another variable.</p>
+<p>Use <strong>fct_reorder()</strong></p>
+<pre class="r"><code>#First you will lump how many levels of the factor eyecolor you want
+library(forcats)
 library(dplyr)
 glimpse(starwars)</code></pre>
 <pre><code>## Observations: 87
@@ -519,12 +565,16 @@ glimpse(starwars)</code></pre>
   group_by(eye_color) %&gt;%
   summarise(mean_mass = mean(mass, na.rm = TRUE))</code></pre>
 <pre class="r"><code>library(ggplot2)
+
+#Then you will reorder the factor by it&#39;s mean mass from least to most
 avg_mass_eye_color %&gt;%
   mutate(eye_color = fct_reorder(eye_color, mean_mass)) %&gt;%
   ggplot(aes(x = eye_color, y = mean_mass)) + 
   geom_col()</code></pre>
-<p><img src="ForCatsPackageTutorial_files/figure-html/unnamed-chunk-7-1.png" width="672" /></p>
-<p><a href="https://r4ds.had.co.nz/factors.html">link to factors reference</a> <a href="https://rpubs.com/tictacjoe/forcats_tutorial" class="uri">https://rpubs.com/tictacjoe/forcats_tutorial</a> <a href="https://forcats.tidyverse.org/articles/forcats.html" class="uri">https://forcats.tidyverse.org/articles/forcats.html</a></p>
+<p><img src="ForCatsPackageTutorial_files/figure-html/unnamed-chunk-10-1.png" width="672" /></p>
+<p><a href="https://r4ds.had.co.nz/factors.html">link to factors chapter reference</a></p>
+<p><a href="https://rpubs.com/tictacjoe/forcats_tutorial">link to explaination of factors in forcats tutorial</a></p>
+<p><a href="https://forcats.tidyverse.org/articles/forcats.html">link to basic things to do with forcats tutorial</a></p>
 </div>
 </div>
 

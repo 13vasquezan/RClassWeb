@@ -40,7 +40,7 @@ library(forcats)
 
 ## The Different Functions of Forcats
 
-It is important to note a few things before using the Forcats package. First, this package works with categorical data in the form of factors. You can check what type of class your variable is with the function **class()**. To use Forcats, you should change your variable to a factor with the function **as.factor()** or **factor()**. 
+It is important to note a few things before using the Forcats package. First, this package works with categorical data in the form of factors or characters. You can check what type of class your variable is with the function **class()**. To use Forcats, you should change your variable to a factor with the function **as.factor()** or **factor()** or a character with the function **as.character()**.
 
 ```{r}
 a<-"hi"
@@ -56,8 +56,7 @@ class(c)
 
 Second,forcats is a package that is used to do something with you categorical data. When you enter in the specific R code to do something with that data, it will store it into the variable you selected. However, it may be difficult for you to see that what you did with Forcats actually happened. It is usful to also install the package **dplyr** and **ggplot2** to your R studio so you can visualize what you have done with your data
 ```{r}
-install.packages("dplyr")
-install.packages("ggplot2")
+
 library(dplyr)
 library(ggplot2)
 ```
@@ -97,6 +96,7 @@ If you have categorical variables/factors in one order you can reverse that orde
 Use **fct_rev()**
 ```{r}
 library(ggplot2)
+#You will reverse the original order of the factors
 ggplot(airquality, aes(fct_rev(Month), Temp)) +
   geom_boxplot(aes(fill = Month)) +
   labs(x = "Month") +
@@ -110,13 +110,14 @@ If you want to change the location or level of your factor.
 
 Use **fct_relevel()**
 ```{r}
+#You will see the order of the factor months has changed from the orginal order
 airquality$Month <- fct_relevel(airquality$Month, 'Sept', 'July', 'May', 'Aug', 'June')
 
 levels(airquality$Month)
 
 ggplot(airquality, aes(Month, Temp)) +
   geom_boxplot(aes(fill = Month)) +
-  ggtitle(label = "Notice how the order of the level 'Month' has changed")
+  ggtitle(label = "Order of 'Month' has changed")
 ```
 
 
@@ -129,23 +130,36 @@ Use **fct_lump()**
 
 ```{r}
 library(dplyr)
+
+#You will lump the  category skin color into 5 levels and then the remaining will be in "other"
 starwars %>%
   mutate(skin_color = fct_lump(skin_color, n = 5)) %>%
   count(skin_color, sort = TRUE)
 ```
 
-### Randomly Reordering a Factor
+###5.Randomly Reordering a Factor
 
 If you don't want the order your factors are in but don't know what order you want, you can randomly choose the order of your factors.
 
 
 Use **fct_shuffle()**
+
+```{r}
+# You will see a random order of the factor eye color
+Randomized <- starwars$eye_color %>%
+  fct_shuffle()
+
+levels(Randomized)
+```
+
 ###6.Reordering a Factor
 
 Lastly, you can reorder your factors by using another variable.
 
 Use **fct_reorder()**
 ```{r}
+
+#First you will lump how many levels of the factor eyecolor you want
 library(forcats)
 library(dplyr)
 glimpse(starwars)
@@ -158,6 +172,8 @@ avg_mass_eye_color <- starwars %>%
 ```
 ```{r}
 library(ggplot2)
+
+#Then you will reorder the factor by it's mean mass from least to most
 avg_mass_eye_color %>%
   mutate(eye_color = fct_reorder(eye_color, mean_mass)) %>%
   ggplot(aes(x = eye_color, y = mean_mass)) + 
@@ -166,6 +182,8 @@ avg_mass_eye_color %>%
 
 
 
-[link to factors reference](https://r4ds.had.co.nz/factors.html)
-https://rpubs.com/tictacjoe/forcats_tutorial
-https://forcats.tidyverse.org/articles/forcats.html
+[link to factors chapter reference](https://r4ds.had.co.nz/factors.html)
+
+[link to explaination of factors in forcats tutorial](https://rpubs.com/tictacjoe/forcats_tutorial)
+
+[link to basic things to do with forcats tutorial](https://forcats.tidyverse.org/articles/forcats.html)
